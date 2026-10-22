@@ -1,0 +1,12 @@
+* { box-sizing: border-box; }
+body { margin:0; font-family: Roboto, Arial, sans-serif; background:#0f0f10; color:#fff; line-height:1.6; }
+header { padding:24px 20px 8px; max-width:800px; margin:auto; }
+header h1 { color:#ffa500; margin:0 0 12px; font-size:1.8rem; }
+nav a { display:inline-block; margin:4px 6px 4px 0; padding:8px 14px; border:1px solid #ffa500; border-radius:20px; color:#ffa500; text-decoration:none; }
+nav a:hover { background:#ffa500; color:#111; }
+main { padding:20px; max-width:800px; margin:auto; }
+h2 { color:#ffa500; }
+a { color:#ffa500; }
+.carte { background:#1b1b1d; border-radius:12px; padding:16px; margin:16px 0; }
+img { max-width:100%; border-radius:12px; }
+footer { text-align:center; color:#888; padding:30px 20px; }
