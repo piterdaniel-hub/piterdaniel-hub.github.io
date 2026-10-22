@@ -46,7 +46,6 @@ footer a:hover { color:var(--or); }
 .profil h2 { margin:0; }
 .competences { display:flex; flex-wrap:wrap; gap:8px; padding:0; list-style:none; }
 .competences li { background:var(--carte); border:1px solid var(--bord); padding:6px 14px; border-radius:20px; }
-
 .parcours { list-style:none; padding:0; margin:0; border-left:2px solid var(--or); }
 .parcours li { position:relative; padding:0 0 18px 20px; }
 .parcours li::before { content:""; position:absolute; left:-7px; top:6px; width:12px; height:12px; background:var(--or); border-radius:50%; }
