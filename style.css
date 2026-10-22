@@ -1,12 +1,21 @@
+:root { --or:#ffa500; --fond:#0f0f10; --carte:#1b1b1d; --texte:#f2f2f2; --gris:#9a9a9a; }
 * { box-sizing: border-box; }
-body { margin:0; font-family: Roboto, Arial, sans-serif; background:#0f0f10; color:#fff; line-height:1.6; }
-header { padding:24px 20px 8px; max-width:800px; margin:auto; }
-header h1 { color:#ffa500; margin:0 0 12px; font-size:1.8rem; }
-nav a { display:inline-block; margin:4px 6px 4px 0; padding:8px 14px; border:1px solid #ffa500; border-radius:20px; color:#ffa500; text-decoration:none; }
-nav a:hover { background:#ffa500; color:#111; }
-main { padding:20px; max-width:800px; margin:auto; }
-h2 { color:#ffa500; }
-a { color:#ffa500; }
-.carte { background:#1b1b1d; border-radius:12px; padding:16px; margin:16px 0; }
+body { margin:0; font-family: Roboto, Arial, sans-serif; background:var(--fond); color:var(--texte); line-height:1.7; }
+header { max-width:900px; margin:auto; padding:24px 20px 8px; }
+header h1 { color:var(--or); margin:0 0 12px; font-size:1.7rem; }
+nav a { display:inline-block; margin:4px 6px 4px 0; padding:8px 16px; border:1px solid var(--or); border-radius:20px; color:var(--or); text-decoration:none; }
+nav a:hover { background:var(--or); color:#111; }
+main { max-width:900px; margin:auto; padding:20px; }
+h2 { color:var(--or); }
+a { color:var(--or); }
+.hero { background:linear-gradient(135deg,#2a2008,#1b1b1d); border:1px solid #4a3a14; border-radius:16px; padding:36px 20px; margin:20px 0; text-align:center; }
+.hero h2 { color:#fff; font-size:1.8rem; margin:0 0 10px; }
+.hero p { color:#ccc; margin:0 0 18px; }
+.bouton { display:inline-block; background:var(--or); color:#111; padding:12px 24px; border-radius:30px; font-weight:bold; text-decoration:none; margin:6px; }
+.bouton.vide { background:transparent; color:var(--or); border:1px solid var(--or); }
+.grille { display:grid; gap:16px; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); }
+.carte { background:var(--carte); border-radius:12px; padding:16px; margin:16px 0; border:1px solid #2a2a2c; }
+.grille .carte { margin:0; }
+.carte h3 { color:#fff; margin-top:0; }
 img { max-width:100%; border-radius:12px; }
-footer { text-align:center; color:#888; padding:30px 20px; }
+footer { text-align:center; color:var(--gris); padding:30px 20px; border-top:1px solid #2a2a2c; margin-top:30px; }
