@@ -36,3 +36,13 @@ footer a { color:var(--gris); margin:0 8px; text-decoration:none; }
 footer a:hover { color:var(--or); }
 @keyframes monte { from { opacity:0; transform:translateY(14px); } to { opacity:1; transform:none; } }
 @media (prefers-reduced-motion: reduce) { * { animation:none !important; transition:none !important; } }
+.profil { display:flex; align-items:center; gap:20px; flex-wrap:wrap; margin:20px 0; }
+.profil img { width:150px; height:150px; border-radius:50%; object-fit:cover; object-position:center top; border:3px solid var(--or); }
+.profil h2 { margin:0; }
+.competences { display:flex; flex-wrap:wrap; gap:8px; padding:0; list-style:none; }
+.competences li { background:var(--carte); border:1px solid var(--bord); padding:6px 14px; border-radius:20px; }
+.profil { display:flex; align-items:center; gap:20px; flex-wrap:wrap; margin:20px 0; }
+.profil img { width:150px; height:150px; border-radius:50%; object-fit:cover; object-position:center top; border:3px solid var(--or); }
+.profil h2 { margin:0; }
+.competences { display:flex; flex-wrap:wrap; gap:8px; padding:0; list-style:none; }
+.competences li { background:var(--carte); border:1px solid var(--bord); padding:6px 14px; border-radius:20px; }
