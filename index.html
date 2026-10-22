@@ -5,71 +5,107 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#0c0c0d">
-  <title>Rwagaza Tech Solution</title>
-  <meta name="description" content="Rwagaza Tech Solution : projets informatiques et apprentissage de l'informatique.">
+  <title>Rwagaza Tech Solution | Projets informatiques et apprentissage du code</title>
+  <meta name="description" content="Rwagaza Tech Solution : projets informatiques, tutoriels de programmation, réseaux et développement web expliqués simplement pour les débutants.">
+  <link rel="canonical" href="https://piterdaniel-hub.github.io/">
+
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="fr_FR">
+  <meta property="og:site_name" content="Rwagaza Tech Solution">
   <meta property="og:title" content="Rwagaza Tech Solution">
-  <meta property="og:description" content="Projets informatiques et apprentissage de l'informatique.">
+  <meta property="og:description" content="Projets informatiques et apprentissage du code, pas à pas.">
   <meta property="og:image" content="https://piterdaniel-hub.github.io/1790524879550.jpg">
   <meta property="og:url" content="https://piterdaniel-hub.github.io/">
+  <meta name="twitter:card" content="summary_large_image">
+
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E💻%3C/text%3E%3C/svg%3E">
   <link rel="stylesheet" href="style.css">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebSite",
+        "name": "Rwagaza Tech Solution",
+        "url": "https://piterdaniel-hub.github.io/",
+        "inLanguage": "fr"
+      },
+      {
+        "@type": "Organization",
+        "name": "Rwagaza Tech Solution",
+        "url": "https://piterdaniel-hub.github.io/",
+        "founder": { "@type": "Person", "name": "Daniel" },
+        "sameAs": ["https://www.facebook.com/cee.travis.daim.n"]
+      }
+    ]
+  }
+  </script>
 </head>
 <body>
+  <a class="lien-evitement" href="#contenu">Aller au contenu</a>
+
   <header>
     <h1>Rwagaza Tech Solution</h1>
-    <nav>
-      <a href="index.html">Accueil</a>
+    <nav aria-label="Menu principal">
+      <a href="index.html" aria-current="page">Accueil</a>
       <a href="projets.html">Projets</a>
       <a href="apprendre.html">Apprendre</a>
       <a href="a-propos.html">À propos</a>
     </nav>
   </header>
 
-  <main>
-    <section class="hero">
-      <h2>Comprendre l'informatique, construire des projets</h2>
-      <p>Je publie mes projets et j'explique pas à pas ce que j'apprends en programmation.</p>
+  <main id="contenu">
+    <section class="hero" aria-labelledby="titre-hero">
+      <h2 id="titre-hero">Comprendre l'informatique, construire des projets</h2>
+      <p>Je publie mes projets et j'explique pas à pas ce que j'apprends en programmation, en réseaux et en développement web.</p>
       <a class="bouton" href="projets.html">Voir mes projets</a>
       <a class="bouton vide" href="apprendre.html">Apprendre avec moi</a>
     </section>
 
-    <h2>Ce que je fais</h2>
-    <div class="grille">
-      <div class="carte">
-        <span class="icone">💻</span>
-        <h3>Projets informatiques</h3>
-        <p>Je construis des sites et des outils, et je les publie ici.</p>
+    <section aria-labelledby="titre-services">
+      <h2 id="titre-services">Ce que je fais</h2>
+      <div class="grille">
+        <article class="carte">
+          <span class="icone">💻</span>
+          <h3>Projets informatiques</h3>
+          <p>Je construis des sites et des outils, et je les publie ici.</p>
+        </article>
+        <article class="carte">
+          <span class="icone">📚</span>
+          <h3>Apprentissage du code</h3>
+          <p>J'explique les algorithmes, la programmation et le code simplement.</p>
+        </article>
+        <article class="carte">
+          <span class="icone">🚀</span>
+          <h3>Conseils pour débutants</h3>
+          <p>Des étapes claires pour passer de débutant à développeur.</p>
+        </article>
       </div>
-      <div class="carte">
-        <span class="icone">📚</span>
-        <h3>Apprentissage du code</h3>
-        <p>J'explique les algorithmes, la programmation et le code simplement.</p>
-      </div>
-      <div class="carte">
-        <span class="icone">🚀</span>
-        <h3>Conseils pour débutants</h3>
-        <p>Des étapes claires pour passer de débutant à développeur.</p>
-      </div>
-    </div>
+    </section>
 
-    <h2>Mes publications</h2>
-    <div class="grille" id="liste-publications"></div>
-    <noscript>
-      <p><a href="article1.html">Lire l'article</a> · <a href="apprendre.html">Apprendre</a></p>
-    </noscript>
+    <section aria-labelledby="titre-publications">
+      <h2 id="titre-publications">Mes publications</h2>
+      <div class="grille" id="liste-publications"></div>
+      <noscript>
+        <p><a href="article1.html">Lire l'article</a> · <a href="apprendre.html">Apprendre</a></p>
+      </noscript>
+    </section>
 
-    <h2>Contact</h2>
-    <div class="carte">
-      <p>Une question ou un projet ? Retrouve-moi sur mes réseaux ou écris-moi.</p>
-      <div class="reseaux">
-        <a href="https://wa.me/243970521444" target="_blank" rel="noopener">WhatsApp</a>
-        <a href="https://www.facebook.com/cee.travis.daim.n" target="_blank" rel="noopener">Facebook</a>
-        <a href="mailto:piterdaniel604@gmail.com">E-mail</a>
+    <section aria-labelledby="titre-contact">
+      <h2 id="titre-contact">Contact</h2>
+      <div class="carte">
+        <p>Une question, un projet, une collaboration ? Retrouve-moi sur mes réseaux ou écris-moi.</p>
+        <div class="reseaux">
+          <a href="https://wa.me/243970521444" target="_blank" rel="noopener">WhatsApp</a>
+          <a href="https://www.facebook.com/cee.travis.daim.n" target="_blank" rel="noopener">Facebook</a>
+          <a href="mailto:piterdaniel604@gmail.com">E-mail</a>
+        </div>
       </div>
-    </div>
+    </section>
   </main>
 
-  <a class="wa-flottant" href="https://wa.me/243970521444" target="_blank" rel="noopener">💬 WhatsApp</a>
+  <a class="wa-flottant" href="https://wa.me/243970521444" target="_blank" rel="noopener" aria-label="Me contacter sur WhatsApp">💬 WhatsApp</a>
 
   <footer>
     <p>
@@ -80,6 +116,8 @@
     </p>
     <p>© 2026 Rwagaza Tech Solution</p>
   </footer>
+
   <script src="publications.js"></script>
+  <script src="assistant.js"></script>
 </body>
-  </html>
+             </html>
