@@ -6,6 +6,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Rwagaza Tech Solution</title>
   <meta name="description" content="Rwagaza Tech Solution : projets informatiques et apprentissage de l'informatique.">
+  <meta property="og:title" content="Rwagaza Tech Solution">
+  <meta property="og:description" content="Projets informatiques et apprentissage de l'informatique.">
+  <meta property="og:image" content="https://piterdaniel-hub.github.io/1790524879550.jpg">
+  <meta property="og:url" content="https://piterdaniel-hub.github.io/">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -27,29 +31,11 @@
       <a class="bouton vide" href="apprendre.html">Apprendre avec moi</a>
     </section>
 
-    <h2>Ce que je fais</h2>
-    <div class="grille">
-      <div class="carte">
-        <h3>Projets informatiques</h3>
-        <p>Je construis des sites et des outils, et je les publie ici.</p>
-      </div>
-      <div class="carte">
-        <h3>Apprentissage du code</h3>
-        <p>J'explique les algorithmes, la programmation et le code simplement.</p>
-      </div>
-      <div class="carte">
-        <h3>Conseils pour débutants</h3>
-        <p>Des étapes claires pour passer de débutant à développeur.</p>
-      </div>
-    </div>
-
-    <h2>Dernier article</h2>
-    <div class="carte">
-      <img src="1790524879550.jpg" alt="Couverture : Maîtriser les algorithmes, la programmation et le code">
-      <h3>Maîtrise algorithme, la programmation &amp; le code</h3>
-      <p>De débutant à développeur.</p>
-      <a class="bouton" href="article1.html">Lire l'article</a>
-    </div>
+    <h2>Mes publications</h2>
+    <div class="grille" id="liste-publications"></div>
+    <noscript>
+      <p><a href="article1.html">Lire l'article</a> · <a href="apprendre.html">Apprendre</a></p>
+    </noscript>
 
     <h2>Contact</h2>
     <div class="carte">
@@ -63,5 +49,6 @@
   </main>
 
   <footer>© 2026 Rwagaza Tech Solution</footer>
+  <script src="publications.js"></script>
 </body>
-      </html>
+</html>
