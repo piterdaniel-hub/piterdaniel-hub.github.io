@@ -29,3 +29,11 @@ publications.forEach(function (p) {
       <a class="bouton" href="${p.lien}">${p.bouton}</a>
     </div>`;
 });
+  {
+    titre: "Apprendre et maîtriser le réseau informatique de A à Z",
+    description: "Guide complet avec exercices pratiques.",
+    image: "NOM_DE_LA_PHOTO.jpg",
+    categorie: "Projet",
+    lien: "projets.html",
+    bouton: "Voir"
+  },
