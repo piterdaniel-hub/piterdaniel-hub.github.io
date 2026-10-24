@@ -3,12 +3,20 @@
 <head>
   <meta name="google-site-verification" content="o_iE7-mkeyLDQOYyYyzS5d1UVIII72TmqhBpMsOC7zI" />
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="theme-color" content="#0c0c0d">
   <title>Rwagaza Tech Solution | Projets informatiques et apprentissage du code</title>
   <meta name="description" content="Rwagaza Tech Solution : projets informatiques, tutoriels de programmation, réseaux et développement web expliqués simplement pour les débutants.">
   <link rel="canonical" href="https://piterdaniel-hub.github.io/">
 
+  <!-- Application installable (PWA) -->
+  <link rel="manifest" href="manifest.json">
+  <link rel="apple-touch-icon" href="icon-192.png">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="Rwagaza Tech">
+
+  <!-- Aperçu de partage (WhatsApp, Facebook, X) -->
   <meta property="og:type" content="website">
   <meta property="og:locale" content="fr_FR">
   <meta property="og:site_name" content="Rwagaza Tech Solution">
@@ -21,6 +29,7 @@
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E💻%3C/text%3E%3C/svg%3E">
   <link rel="stylesheet" href="style.css">
 
+  <!-- Données structurées pour Google -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -92,6 +101,47 @@
       </noscript>
     </section>
 
+    <section aria-labelledby="titre-etapes">
+      <h2 id="titre-etapes">Comment ça marche</h2>
+      <div class="grille">
+        <article class="carte">
+          <span class="numero">1</span>
+          <h3>Tu me contactes</h3>
+          <p>Écris-moi sur WhatsApp et explique-moi ton besoin ou ta question.</p>
+        </article>
+        <article class="carte">
+          <span class="numero">2</span>
+          <h3>On précise ensemble</h3>
+          <p>On définit ce qu'il faut faire, le délai et les conditions.</p>
+        </article>
+        <article class="carte">
+          <span class="numero">3</span>
+          <h3>Je réalise</h3>
+          <p>Je travaille sur le projet et je te tiens informé jusqu'à la fin.</p>
+        </article>
+      </div>
+    </section>
+
+    <section aria-labelledby="titre-faq">
+      <h2 id="titre-faq">Questions fréquentes</h2>
+      <details class="carte">
+        <summary>Pour qui est ce site ?</summary>
+        <p>Pour les débutants qui veulent comprendre l'informatique, la programmation et le développement web pas à pas.</p>
+      </details>
+      <details class="carte">
+        <summary>Les articles sont-ils gratuits ?</summary>
+        <p>Oui, tu peux lire les publications du site librement.</p>
+      </details>
+      <details class="carte">
+        <summary>Comment te contacter ?</summary>
+        <p>Le plus rapide est WhatsApp. Tu peux aussi m'écrire par e-mail ou sur Facebook.</p>
+      </details>
+      <details class="carte">
+        <summary>Puis-je installer le site comme une application ?</summary>
+        <p>Oui. Dans Chrome, ouvre le menu ⋮ puis choisis « Installer l'application » ou « Ajouter à l'écran d'accueil ».</p>
+      </details>
+    </section>
+
     <section aria-labelledby="titre-contact">
       <h2 id="titre-contact">Contact</h2>
       <div class="carte">
@@ -119,5 +169,12 @@
 
   <script src="publications.js"></script>
   <script src="assistant.js"></script>
+  <script>
+    if ("serviceWorker" in navigator) {
+      window.addEventListener("load", function () {
+        navigator.serviceWorker.register("/sw.js").catch(function () {});
+      });
+    }
+  </script>
 </body>
-             </html>
+                                 </html>
