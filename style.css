@@ -134,3 +134,6 @@ body::before { content:""; position:fixed; inset:0; z-index:-1; pointer-events:n
 .filtres button.actif, .filtres button:hover { background:var(--or); color:#111; }
 .lecon { margin:10px 0; }
 .lecon .etiquette { margin-top:12px; }
+/* ===== Leçon du jour et partage ===== */
+.jour { border-color:var(--or); background:linear-gradient(135deg,#2a2008,#1a1a1c); margin-bottom:20px; }
+.partage { display:inline-block; margin:12px 0 0 10px; font-size:.9rem; }
