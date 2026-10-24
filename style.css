@@ -126,3 +126,11 @@ body::before { content:""; position:fixed; inset:0; z-index:-1; pointer-events:n
 .glossaire dd { margin:4px 0 0; color:#ccc; }
 .bandeau { background:linear-gradient(135deg,#2a2008,#1a1a1c); border:1px solid #4a3a14; border-radius:18px; padding:28px 18px; text-align:center; margin:30px 0; }
 .bandeau h2 { margin-top:0; color:#fff; }
+/* ===== Bibliothèque de leçons ===== */
+.recherche { width:100%; background:var(--carte); color:#fff; border:1px solid var(--bord); border-radius:30px; padding:12px 18px; font-size:1rem; }
+.recherche:focus { outline:2px solid var(--or); }
+.filtres { display:flex; flex-wrap:wrap; gap:8px; margin:14px 0; }
+.filtres button { background:transparent; color:var(--or); border:1px solid var(--or); border-radius:20px; padding:6px 14px; cursor:pointer; font-size:.9rem; }
+.filtres button.actif, .filtres button:hover { background:var(--or); color:#111; }
+.lecon { margin:10px 0; }
+.lecon .etiquette { margin-top:12px; }
