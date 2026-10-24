@@ -36,6 +36,8 @@ var lecons = [
   { c:"Web", t:"Un site responsive", x:"Un site responsive s'adapte automatiquement à la taille de l'écran : téléphone, tablette ou ordinateur. C'est indispensable aujourd'hui." },
   { c:"Web", t:"Les balises HTML", x:"Une balise est un mot entre chevrons. Par exemple h1 pour un grand titre, p pour un paragraphe, a pour un lien et img pour une image." },
   { c:"Web", t:"Le référencement (SEO)", x:"Le SEO aide Google à comprendre et à montrer ton site. Il repose sur des titres clairs, des descriptions précises et des contenus utiles." },
+  { c:"Web", t:"Les cookies", x:"Un cookie est un petit fichier que le navigateur garde pour mémoriser des informations : connexion, langue, préférences. Certains servent aussi à suivre la navigation, d'où les messages de consentement." },
+  { c:"Web", t:"Le cache", x:"Le cache est une copie temporaire de données gardée pour charger plus vite la prochaine fois. Quand une page semble ancienne, vider le cache ou recharger peut régler le problème." },
 
   // ===== Réseaux =====
   { c:"Réseaux", t:"Qu'est-ce qu'un réseau informatique ?", x:"Un réseau relie plusieurs appareils pour qu'ils échangent des données et partagent des ressources : fichiers, imprimantes, connexion Internet." },
@@ -57,6 +59,8 @@ var lecons = [
   { c:"Sécurité", t:"Le HTTPS et le cadenas", x:"Le HTTPS chiffre les échanges entre toi et le site, pour que personne ne puisse les lire en chemin. Le cadenas ne prouve pas qu'un site est honnête, seulement que la connexion est protégée." },
   { c:"Sécurité", t:"Les mises à jour", x:"Les mises à jour corrigent des failles de sécurité et des bugs. Les installer régulièrement protège ton téléphone et ton ordinateur." },
   { c:"Sécurité", t:"Installer des logiciels fiables", x:"Télécharge tes applications depuis les boutiques officielles ou les sites des éditeurs. Les logiciels piratés ou de sources inconnues contiennent souvent des virus." },
+  { c:"Sécurité", t:"Le pare-feu", x:"Le pare-feu filtre les connexions qui entrent et sortent d'un appareil ou d'un réseau selon des règles. Il bloque les accès non autorisés." },
+  { c:"Sécurité", t:"Le VPN", x:"Un VPN crée un tunnel chiffré entre ton appareil et un serveur. Il protège tes échanges sur un Wi-Fi public, mais il ne te rend pas invisible pour autant." },
 
   // ===== Outils =====
   { c:"Outils", t:"Git et GitHub", x:"Git suit l'historique des modifications d'un projet. GitHub est un site qui héberge ces projets en ligne, permet de les partager et, comme ici, de publier un site gratuitement." },
@@ -64,6 +68,7 @@ var lecons = [
   { c:"Outils", t:"Le terminal (ligne de commande)", x:"Le terminal permet de donner des ordres à l'ordinateur en écrivant des commandes. C'est un outil très utilisé par les développeurs et les administrateurs." },
   { c:"Outils", t:"Les API", x:"Une API est un pont qui permet à deux logiciels de communiquer. Par exemple, une application météo reçoit ses données grâce à une API." },
   { c:"Outils", t:"Les bases de données", x:"Une base de données stocke des informations de façon organisée : clients, produits, messages. Les applications y lisent et y écrivent en permanence." },
+  { c:"Outils", t:"L'open source", x:"Un logiciel open source a un code public que chacun peut lire, utiliser et améliorer selon une licence. Linux et Firefox en sont de bons exemples." },
   { c:"Outils", t:"L'intelligence artificielle", x:"L'IA désigne des programmes entraînés sur de grandes quantités de données pour répondre ou créer du contenu. Ils peuvent se tromper : vérifie toujours les informations importantes." }
 ];
 
@@ -72,55 +77,126 @@ var lecons = [
   var champ = document.getElementById("recherche");
   var zoneFiltres = document.getElementById("filtres");
   var compteur = document.getElementById("compteur");
+  if (!liste || !champ || !zoneFiltres || !compteur) return;
   var categorie = "Tout";
 
   function normaliser(s) {
     return s.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
   }
 
+  function ouvrir(id) {
+    var el = document.getElementById(id);
+    if (!el) return;
+    el.open = true;
+    el.scrollIntoView({ behavior: "smooth", block: "center" });
+  }
+
+  function marquerFiltre(nom) {
+    Array.prototype.forEach.call(zoneFiltres.children, function (b) {
+      b.className = (b.textContent === nom) ? "actif" : "";
+    });
+  }
+
   function afficher() {
     var q = normaliser(champ.value);
     var n = 0;
     liste.innerHTML = "";
-    lecons.forEach(function (l) {
+    lecons.forEach(function (l, i) {
       if (categorie !== "Tout" && l.c !== categorie) return;
       if (q && normaliser(l.t + " " + l.x).indexOf(q) === -1) return;
       n++;
       var d = document.createElement("details");
       d.className = "carte lecon";
+      d.id = "lecon-" + i;
       var s = document.createElement("summary");
-      s.textContent = l.t;
+      s.textContent = (i + 1) + ". " + l.t;
       var p = document.createElement("p");
       p.textContent = l.x;
       var e = document.createElement("span");
       e.className = "etiquette";
       e.textContent = l.c;
+      var a = document.createElement("a");
+      a.className = "partage";
+      a.target = "_blank";
+      a.rel = "noopener";
+      a.textContent = "Partager sur WhatsApp";
+      var lien = location.origin + "/apprendre.html#lecon-" + i;
+      a.href = "https://wa.me/?text=" + encodeURIComponent(l.t + " : " + lien);
       d.appendChild(s);
       d.appendChild(p);
       d.appendChild(e);
+      d.appendChild(a);
       liste.appendChild(d);
     });
-    compteur.textContent = n + (n > 1 ? " leçons" : " leçon");
+    compteur.textContent = n + (n > 1 ? " leçons" : " leçon") + (categorie !== "Tout" ? " · " + categorie : "");
     if (n === 0) {
       liste.innerHTML = "<p class='sous-titre'>Aucune leçon trouvée. Essaie un autre mot.</p>";
     }
   }
 
+  // Filtres par catégorie
   var cats = ["Tout"];
   lecons.forEach(function (l) { if (cats.indexOf(l.c) === -1) cats.push(l.c); });
   cats.forEach(function (c) {
     var b = document.createElement("button");
     b.textContent = c;
-    if (c === "Tout") b.className = "actif";
     b.onclick = function () {
       categorie = c;
-      Array.prototype.forEach.call(zoneFiltres.children, function (x) { x.className = ""; });
-      b.className = "actif";
+      marquerFiltre(c);
       afficher();
     };
     zoneFiltres.appendChild(b);
   });
+  marquerFiltre("Tout");
+
+  // Barre d'outils : tout ouvrir, tout fermer, au hasard
+  var barre = document.createElement("div");
+  barre.className = "filtres";
+  function bouton(texte, action) {
+    var b = document.createElement("button");
+    b.textContent = texte;
+    b.onclick = action;
+    barre.appendChild(b);
+  }
+  bouton("Tout ouvrir", function () {
+    Array.prototype.forEach.call(liste.querySelectorAll("details"), function (d) { d.open = true; });
+  });
+  bouton("Tout fermer", function () {
+    Array.prototype.forEach.call(liste.querySelectorAll("details"), function (d) { d.open = false; });
+  });
+  bouton("🎲 Au hasard", function () {
+    var i = Math.floor(Math.random() * lecons.length);
+    categorie = "Tout";
+    champ.value = "";
+    marquerFiltre("Tout");
+    afficher();
+    ouvrir("lecon-" + i);
+  });
+  liste.parentNode.insertBefore(barre, liste);
+
+  // Leçon du jour
+  var debut = new Date(new Date().getFullYear(), 0, 0);
+  var jourDeLAn = Math.floor((new Date() - debut) / 86400000);
+  var iJour = jourDeLAn % lecons.length;
+  var jour = document.createElement("div");
+  jour.className = "carte jour";
+  var etiq = document.createElement("span");
+  etiq.className = "etiquette";
+  etiq.textContent = "Leçon du jour";
+  var tj = document.createElement("h3");
+  tj.textContent = lecons[iJour].t;
+  var pj = document.createElement("p");
+  pj.textContent = lecons[iJour].x;
+  jour.appendChild(etiq);
+  jour.appendChild(tj);
+  jour.appendChild(pj);
+  champ.parentNode.insertBefore(jour, champ);
 
   champ.oninput = afficher;
   afficher();
+
+  // Lien direct vers une leçon (#lecon-12)
+  if (location.hash.indexOf("#lecon-") === 0) {
+    ouvrir(location.hash.substring(1));
+  }
 })();
