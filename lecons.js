@@ -69,7 +69,14 @@ var lecons = [
   { c:"Outils", t:"Les API", x:"Une API est un pont qui permet à deux logiciels de communiquer. Par exemple, une application météo reçoit ses données grâce à une API." },
   { c:"Outils", t:"Les bases de données", x:"Une base de données stocke des informations de façon organisée : clients, produits, messages. Les applications y lisent et y écrivent en permanence." },
   { c:"Outils", t:"L'open source", x:"Un logiciel open source a un code public que chacun peut lire, utiliser et améliorer selon une licence. Linux et Firefox en sont de bons exemples." },
-  { c:"Outils", t:"L'intelligence artificielle", x:"L'IA désigne des programmes entraînés sur de grandes quantités de données pour répondre ou créer du contenu. Ils peuvent se tromper : vérifie toujours les informations importantes." }
+  { c:"Outils", t:"L'intelligence artificielle", x:"L'IA désigne des programmes entraînés sur de grandes quantités de données pour répondre ou créer du contenu. Ils peuvent se tromper : vérifie toujours les informations importantes." },
+
+  // ===== IA =====
+  { c:"IA", t:"Qu'est-ce qu'un prompt ?", x:"Un prompt est l'instruction que tu donnes à une IA. Plus il est clair, avec un contexte, un objectif et le format voulu, meilleure est la réponse." },
+  { c:"IA", t:"Les erreurs de l'IA", x:"Une IA peut inventer des informations avec beaucoup d'assurance. Vérifie les faits importants, les chiffres et les sources avant de les utiliser ou de les publier." },
+  { c:"IA", t:"Les outils d'IA au quotidien", x:"Il existe des assistants de discussion, des outils de recherche, de rédaction, de création d'images, de sons et de vidéos. Choisis l'outil selon ton besoin plutôt que de tous les essayer." },
+  { c:"IA", t:"Automatiser avec le no-code", x:"Des outils no-code permettent d'enchaîner des tâches sans programmer : par exemple, enregistrer automatiquement chaque nouveau message dans un tableau. Ils font gagner du temps sur les tâches répétitives." },
+  { c:"IA", t:"IA et données personnelles", x:"Ne colle jamais de mots de passe, de numéros de pièces d'identité ou d'informations privées dans un outil d'IA. Ce que tu écris peut être conservé ou traité par le service." }
 ];
 
 (function () {
@@ -134,7 +141,6 @@ var lecons = [
     }
   }
 
-  // Filtres par catégorie
   var cats = ["Tout"];
   lecons.forEach(function (l) { if (cats.indexOf(l.c) === -1) cats.push(l.c); });
   cats.forEach(function (c) {
@@ -149,7 +155,6 @@ var lecons = [
   });
   marquerFiltre("Tout");
 
-  // Barre d'outils : tout ouvrir, tout fermer, au hasard
   var barre = document.createElement("div");
   barre.className = "filtres";
   function bouton(texte, action) {
@@ -174,7 +179,6 @@ var lecons = [
   });
   liste.parentNode.insertBefore(barre, liste);
 
-  // Leçon du jour
   var debut = new Date(new Date().getFullYear(), 0, 0);
   var jourDeLAn = Math.floor((new Date() - debut) / 86400000);
   var iJour = jourDeLAn % lecons.length;
@@ -195,7 +199,6 @@ var lecons = [
   champ.oninput = afficher;
   afficher();
 
-  // Lien direct vers une leçon (#lecon-12)
   if (location.hash.indexOf("#lecon-") === 0) {
     ouvrir(location.hash.substring(1));
   }
