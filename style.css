@@ -137,3 +137,10 @@ body::before { content:""; position:fixed; inset:0; z-index:-1; pointer-events:n
 /* ===== Leçon du jour et partage ===== */
 .jour { border-color:var(--or); background:linear-gradient(135deg,#2a2008,#1a1a1c); margin-bottom:20px; }
 .partage { display:inline-block; margin:12px 0 0 10px; font-size:.9rem; }
+/* ===== Galerie ===== */
+.grille .carte img.vignette { height:260px; cursor:zoom-in; }
+.source { color:var(--gris); font-size:.85rem; margin:8px 0 0; }
+.avert { background:#2a1a08; border-left:3px solid var(--or); padding:8px 12px; border-radius:6px; font-size:.88rem; color:#ddd; }
+.lightbox { display:none; position:fixed; inset:0; z-index:200; background:rgba(0,0,0,.92); align-items:center; justify-content:center; padding:16px; cursor:zoom-out; }
+.lightbox.ouvert { display:flex; }
+.lightbox img { max-width:100%; max-height:100%; object-fit:contain; border-radius:8px; }
