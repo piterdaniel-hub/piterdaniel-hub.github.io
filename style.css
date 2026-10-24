@@ -105,3 +105,24 @@ footer a:hover { color:var(--or); }
   .carte { border:1px solid #ccc; background:#fff; }
   a { color:#000; }
                                    }
+/* ===== Fond professionnel ===== */
+body::before { content:""; position:fixed; inset:0; z-index:-1; pointer-events:none;
+  background:
+    radial-gradient(circle at 15% 0%, rgba(255,165,0,.14), transparent 45%),
+    radial-gradient(circle at 92% 35%, rgba(255,165,0,.07), transparent 40%),
+    linear-gradient(rgba(255,255,255,.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,.03) 1px, transparent 1px);
+  background-size:auto, auto, 40px 40px, 40px 40px; }
+
+/* ===== Nouveaux éléments ===== */
+.badge { display:inline-block; border:1px solid var(--or); color:var(--or); border-radius:20px; padding:4px 14px; font-size:.82rem; margin-bottom:14px; letter-spacing:.5px; }
+.sous-titre { color:var(--gris); margin-top:-6px; }
+.puces { list-style:none; padding:0; margin:10px 0 0; }
+.puces li { padding-left:26px; position:relative; margin:6px 0; }
+.puces li::before { content:"✔"; position:absolute; left:0; color:var(--or); }
+.glossaire { display:grid; gap:12px; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); margin:0; }
+.glossaire div { background:var(--carte); border:1px solid var(--bord); border-radius:12px; padding:14px; }
+.glossaire dt { color:var(--or); font-weight:bold; }
+.glossaire dd { margin:4px 0 0; color:#ccc; }
+.bandeau { background:linear-gradient(135deg,#2a2008,#1a1a1c); border:1px solid #4a3a14; border-radius:18px; padding:28px 18px; text-align:center; margin:30px 0; }
+.bandeau h2 { margin-top:0; color:#fff; }
