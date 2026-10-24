@@ -1,35 +1,48 @@
-:root { --or:#ffa500; --or2:#ffcc4d; --fond:#0c0c0d; --carte:#1a1a1c; --bord:#2b2b2e; --texte:#f2f2f2; --gris:#9a9a9a; }
+/* ===== Variables ===== */
+:root {
+  --or:#ffa500; --or2:#ffcc4d; --fond:#0c0c0d; --carte:#1a1a1c;
+  --bord:#2b2b2e; --texte:#f2f2f2; --gris:#9a9a9a; --rayon:14px;
+}
+
+/* ===== Base ===== */
 * { box-sizing: border-box; }
-html { scroll-behavior: smooth; }
-body { margin:0; font-family: Roboto, Arial, sans-serif; background:var(--fond); color:var(--texte); line-height:1.7; }
-
-/* En-tête et menu */
-header { position:sticky; top:0; z-index:50; background:rgba(12,12,13,.92); backdrop-filter:blur(10px); border-bottom:1px solid var(--bord); padding:12px max(20px, calc((100% - 860px) / 2)); }
-header h1 { color:var(--or); margin:0 0 8px; font-size:1.35rem; letter-spacing:.3px; }
-nav a { display:inline-block; margin:2px 4px 2px 0; padding:6px 14px; border:1px solid var(--or); border-radius:20px; color:var(--or); text-decoration:none; font-size:.9rem; transition:.2s; }
-nav a:hover { background:var(--or); color:#111; }
-
-/* Contenu */
-main { max-width:900px; margin:auto; padding:20px; }
-h2 { color:var(--or); margin-top:36px; }
+html { scroll-behavior: smooth; -webkit-text-size-adjust:100%; }
+body { margin:0; font-family: Roboto, Arial, sans-serif; background:var(--fond); color:var(--texte); line-height:1.7; -webkit-font-smoothing:antialiased; }
+::selection { background:var(--or); color:#111; }
 a { color:var(--or); }
-a:focus-visible, .bouton:focus-visible { outline:2px solid var(--or2); outline-offset:3px; }
-img { max-width:100%; border-radius:12px; }
+a:focus-visible, .bouton:focus-visible, button:focus-visible, summary:focus-visible { outline:2px solid var(--or2); outline-offset:3px; }
+img { max-width:100%; height:auto; border-radius:12px; }
+h1, h2, h3 { line-height:1.3; }
+h2 { color:var(--or); margin-top:36px; font-size:clamp(1.3rem, 4vw, 1.6rem); }
+::-webkit-scrollbar { width:8px; }
+::-webkit-scrollbar-track { background:var(--fond); }
+::-webkit-scrollbar-thumb { background:#3a3a3d; border-radius:8px; }
+
+/* ===== Accessibilité ===== */
 .lien-evitement { position:absolute; left:-9999px; top:0; background:var(--or); color:#111; padding:10px 16px; z-index:100; border-radius:0 0 8px 0; }
 .lien-evitement:focus { left:0; }
 
-/* Bannière et boutons */
+/* ===== En-tête et menu ===== */
+header { position:sticky; top:0; z-index:50; background:rgba(12,12,13,.92); backdrop-filter:blur(10px); border-bottom:1px solid var(--bord); padding:12px max(20px, calc((100% - 860px) / 2)); padding-top:max(12px, env(safe-area-inset-top)); }
+header h1 { color:var(--or); margin:0 0 8px; font-size:1.35rem; letter-spacing:.3px; }
+nav a { display:inline-block; margin:2px 4px 2px 0; padding:6px 14px; border:1px solid var(--or); border-radius:20px; color:var(--or); text-decoration:none; font-size:.9rem; transition:.2s; }
+nav a:hover, nav a[aria-current="page"] { background:var(--or); color:#111; }
+
+/* ===== Contenu ===== */
+main { max-width:900px; margin:auto; padding:20px; }
+
+/* ===== Bannière et boutons ===== */
 .hero { background:radial-gradient(circle at 20% 0%, #3a2a08 0%, #1a1a1c 60%); border:1px solid #4a3a14; border-radius:18px; padding:44px 20px; margin:20px 0; text-align:center; animation:monte .7s ease both; }
-.hero h2 { color:#fff; font-size:1.9rem; line-height:1.3; margin:0 0 12px; }
+.hero h2 { color:#fff; font-size:clamp(1.5rem, 6vw, 2rem); margin:0 0 12px; }
 .hero p { color:#ccc; margin:0 0 20px; }
-.bouton { display:inline-block; background:var(--or); color:#111; padding:12px 24px; border-radius:30px; font-weight:bold; text-decoration:none; margin:6px; transition:.2s; }
+.bouton { display:inline-block; background:var(--or); color:#111; padding:12px 24px; min-height:44px; border-radius:30px; font-weight:bold; text-decoration:none; margin:6px; transition:.2s; }
 .bouton:hover { background:var(--or2); transform:translateY(-2px); }
 .bouton.vide { background:transparent; color:var(--or); border:1px solid var(--or); }
 .bouton.vide:hover { background:var(--or); color:#111; }
 
-/* Cartes */
+/* ===== Cartes ===== */
 .grille { display:grid; gap:16px; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); }
-.carte { background:var(--carte); border-radius:14px; padding:16px; margin:16px 0; border:1px solid var(--bord); transition:.25s; animation:monte .6s ease both; }
+.carte { background:var(--carte); border-radius:var(--rayon); padding:16px; margin:16px 0; border:1px solid var(--bord); transition:.25s; animation:monte .6s ease both; }
 .carte:hover { border-color:var(--or); transform:translateY(-3px); }
 .grille .carte { margin:0; }
 .carte h3 { color:#fff; margin:6px 0; }
@@ -37,14 +50,23 @@ img { max-width:100%; border-radius:12px; }
 .etiquette { display:inline-block; font-size:.78rem; color:#111; background:var(--or); padding:2px 12px; border-radius:12px; margin:10px 0 4px; }
 .grille .carte img { width:100%; height:220px; object-fit:contain; background:#111; }
 
-/* Réseaux et WhatsApp */
+/* ===== Étapes et FAQ ===== */
+.numero { display:inline-flex; align-items:center; justify-content:center; width:36px; height:36px; border-radius:50%; background:var(--or); color:#111; font-weight:bold; margin-bottom:6px; }
+details.carte summary { cursor:pointer; color:#fff; font-weight:bold; list-style:none; display:flex; justify-content:space-between; align-items:center; gap:10px; }
+details.carte summary::-webkit-details-marker { display:none; }
+details.carte summary::after { content:"+"; color:var(--or); font-size:1.4rem; line-height:1; }
+details.carte[open] summary::after { content:"−"; }
+details.carte[open] { border-color:var(--or); }
+details.carte p { margin:10px 0 0; color:#ccc; }
+
+/* ===== Réseaux et WhatsApp ===== */
 .reseaux { display:flex; flex-wrap:wrap; gap:10px; margin-top:14px; }
 .reseaux a { padding:10px 18px; border:1px solid var(--or); border-radius:30px; color:var(--or); text-decoration:none; font-size:.95rem; transition:.2s; }
 .reseaux a:hover { background:var(--or); color:#111; }
-.wa-flottant { position:fixed; right:16px; bottom:16px; z-index:60; background:#25d366; color:#fff; text-decoration:none; font-weight:bold; padding:12px 18px; border-radius:30px; box-shadow:0 4px 14px rgba(0,0,0,.5); }
+.wa-flottant { position:fixed; right:16px; bottom:max(16px, env(safe-area-inset-bottom)); z-index:60; background:#25d366; color:#fff; text-decoration:none; font-weight:bold; padding:12px 18px; border-radius:30px; box-shadow:0 4px 14px rgba(0,0,0,.5); }
 .wa-flottant:hover { background:#1ebe5b; }
 
-/* Page À propos */
+/* ===== Page À propos ===== */
 .profil { display:flex; align-items:center; gap:20px; flex-wrap:wrap; margin:20px 0; }
 .profil img { width:150px; height:150px; border-radius:50%; object-fit:cover; object-position:center top; border:3px solid var(--or); }
 .profil h2 { margin:0; }
@@ -59,11 +81,27 @@ img { max-width:100%; border-radius:12px; }
 .chiffres div { background:var(--carte); border:1px solid var(--bord); border-radius:12px; padding:14px 8px; }
 .chiffres b { display:block; color:var(--or); font-size:1.5rem; }
 
-/* Pied de page */
+/* ===== Pied de page ===== */
 footer { text-align:center; color:var(--gris); padding:30px 20px 80px; border-top:1px solid var(--bord); margin-top:40px; }
 footer a { color:var(--gris); margin:0 8px; text-decoration:none; }
 footer a:hover { color:var(--or); }
 
-/* Animations */
+/* ===== Animations ===== */
 @keyframes monte { from { opacity:0; transform:translateY(14px); } to { opacity:1; transform:none; } }
-@media (prefers-reduced-motion: reduce) { * { animation:none !important; transition:none !important; } }
+@media (prefers-reduced-motion: reduce) { * { animation:none !important; transition:none !important; } html { scroll-behavior:auto; } }
+
+/* ===== Petits écrans ===== */
+@media (max-width:480px) {
+  main { padding:14px; }
+  .hero { padding:32px 14px; }
+  .bouton { display:block; margin:8px 0; text-align:center; }
+  .profil { justify-content:center; text-align:center; }
+}
+
+/* ===== Impression ===== */
+@media print {
+  header, .wa-flottant, footer nav, .ia-bouton, .ia-panneau { display:none !important; }
+  body { background:#fff; color:#000; }
+  .carte { border:1px solid #ccc; background:#fff; }
+  a { color:#000; }
+                                   }
