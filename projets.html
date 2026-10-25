@@ -4,8 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="theme-color" content="#0c0c0d">
-  <title>Mes projets | Rwagaza Tech Solution</title>
-  <meta name="description" content="Les projets de Rwagaza Tech Solution : site web, guides et réalisations informatiques.">
+  <title>Mes projets et services | Rwagaza Tech Solution</title>
+  <meta name="description" content="Création de sites web, sites installables comme application, accompagnement des débutants et guides d'informatique.">
   <link rel="manifest" href="manifest.json">
   <link rel="apple-touch-icon" href="icon-192.png">
   <link rel="stylesheet" href="style.css">
@@ -23,26 +23,9 @@
   </header>
 
   <main>
-    <h2>Mes projets</h2>
-    <p class="sous-titre">Des réalisations concrètes, présentées simplement.</p>
-
-    <div class="grille">
-      <article class="carte">
-        <span class="icone">🌐</span>
-        <span class="etiquette">Site web</span>
-        <h3>Site Rwagaza Tech Solution</h3>
-        <p>Mon site web sur GitHub Pages, fait en HTML, CSS et JavaScript, installable comme une application.</p>
-        <a class="bouton" href="index.html">Voir le site</a>
-      </article>
-
-      <article class="carte">
-        <img src="1000035591.jpg" alt="Couverture : Apprendre et maîtriser le réseau informatique de A à Z">
-        <span class="etiquette">Guide</span>
-        <h3>Apprendre et maîtriser le réseau informatique de A à Z</h3>
-        <p>Un guide complet avec exercices pratiques : notions essentielles, configuration pas à pas, sécurité, optimisation des performances et études de cas réelles.</p>
-        <a class="bouton" href="https://wa.me/243898560667" target="_blank" rel="noopener">Me contacter à ce sujet</a>
-      </article>
-    </div>
+    <h2>Mes projets et services</h2>
+    <p class="sous-titre">Appuie sur un projet pour lire tous les détails.</p>
+    <div class="grille" id="liste-projets"></div>
   </main>
 
   <a class="wa-flottant" href="https://wa.me/243898560667" target="_blank" rel="noopener" aria-label="Me contacter sur WhatsApp">💬 WhatsApp</a>
@@ -58,6 +41,44 @@
     <p>© 2026 Rwagaza Tech Solution</p>
   </footer>
 
+  <script src="projets-data.js"></script>
+  <script>
+    (function () {
+      var liste = document.getElementById("liste-projets");
+      projets.forEach(function (p) {
+        var a = document.createElement("a");
+        a.className = "carte carte-lien";
+        a.href = "projet.html?id=" + p.id;
+        if (p.image) {
+          var im = document.createElement("img");
+          im.src = p.image;
+          im.alt = p.titre;
+          im.loading = "lazy";
+          a.appendChild(im);
+        } else if (p.icone) {
+          var ic = document.createElement("span");
+          ic.className = "icone";
+          ic.textContent = p.icone;
+          a.appendChild(ic);
+        }
+        var e = document.createElement("span");
+        e.className = "etiquette";
+        e.textContent = p.cat;
+        var h = document.createElement("h3");
+        h.textContent = p.titre;
+        var r = document.createElement("p");
+        r.textContent = p.resume;
+        var plus = document.createElement("span");
+        plus.className = "plus";
+        plus.textContent = "Voir les détails →";
+        a.appendChild(e);
+        a.appendChild(h);
+        a.appendChild(r);
+        a.appendChild(plus);
+        liste.appendChild(a);
+      });
+    })();
+  </script>
   <script src="assistant.js"></script>
   <script>
     if ("serviceWorker" in navigator) {
