@@ -1,7 +1,7 @@
 (function () {
   // ===== Réglages (tu peux les modifier) =====
-  var NUMERO_WHATSAPP = "243970521444";
-  var voixActive = true;          // true = l'assistant parle, false = silencieux au départ
+  var NUMERO_WHATSAPP = "243898560667";
+  var voixActive = true;
   var NOM = "Assistant Rwagaza Tech";
 
   // ===== Connaissances : ajoute tes propres sujets ici =====
@@ -14,6 +14,8 @@
       texte: "Tu peux découvrir mes projets sur la page Projets.", lien: "projets.html", nom: "Voir les projets" },
     { mots: ["apprendre", "cours", "tutoriel", "article", "formation", "debutant", "etudier"],
       texte: "Les articles et explications pour débutants sont sur la page Apprendre.", lien: "apprendre.html", nom: "Aller à Apprendre" },
+    { mots: ["galerie", "image", "infographie", "schema"],
+      texte: "La galerie rassemble des infographies sur l'IA, le web, Linux, les langages et la sécurité.", lien: "galerie.html", nom: "Ouvrir la galerie" },
     { mots: ["serveur", "dns", "proxy", "base de donnees", "hebergement"],
       texte: "J'explique les neuf types de serveurs : base de données, fichiers, DNS, application, impression, mail, web, proxy et jeux. C'est sur la page Apprendre.", lien: "apprendre.html", nom: "Voir les serveurs" },
     { mots: ["algorithme", "programmation", "code", "developpeur", "programmer", "coder"],
@@ -35,7 +37,6 @@
   ];
   var defaut = "Je n'ai pas bien compris, mais je peux t'aider sur les projets, les articles, les serveurs, Daniel ou le contact. Tu peux aussi écrire directement à Daniel.";
 
-  // ===== Outils =====
   function normaliser(t) {
     return t.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
   }
@@ -200,7 +201,7 @@
   }
 
   // ===== Actions =====
-  ["Projets", "Apprendre", "Serveurs", "Qui est Daniel ?", "Contact"].forEach(function (t) {
+  ["Projets", "Apprendre", "Galerie", "Qui est Daniel ?", "Contact"].forEach(function (t) {
     var b = document.createElement("button");
     b.textContent = t;
     b.onclick = function () { poser(t); };
