@@ -157,3 +157,7 @@ body::before { content:""; position:fixed; inset:0; z-index:-1; pointer-events:n
 .formulaire textarea { min-height:140px; resize:vertical; }
 .formulaire .bouton { border:0; cursor:pointer; font-size:1rem; }
 .formulaire .erreur { color:#ff8a80; margin:10px 0 0; min-height:1.2em; }
+/* ===== Sélecteur de langue ===== */
+.langues { margin:0 0 10px; }
+.langues a { display:inline-block; margin:2px 4px; padding:4px 12px; border:1px solid var(--bord); border-radius:16px; color:var(--gris); text-decoration:none; font-size:.85rem; }
+.langues a:hover, .langues a[aria-current="true"] { border-color:var(--or); color:var(--or); }
