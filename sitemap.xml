@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url><loc>https://piterdaniel-hub.github.io/</loc></url>
+  <url><loc>https://piterdaniel-hub.github.io/en/</loc></url>
+  <url><loc>https://piterdaniel-hub.github.io/es/</loc></url>
+  <url><loc>https://piterdaniel-hub.github.io/pt/</loc></url>
   <url><loc>https://piterdaniel-hub.github.io/projets.html</loc></url>
   <url><loc>https://piterdaniel-hub.github.io/projet.html?id=site-web</loc></url>
   <url><loc>https://piterdaniel-hub.github.io/projet.html?id=application</loc></url>
@@ -11,5 +14,6 @@
   <url><loc>https://piterdaniel-hub.github.io/galerie.html</loc></url>
   <url><loc>https://piterdaniel-hub.github.io/a-propos.html</loc></url>
   <url><loc>https://piterdaniel-hub.github.io/contact.html</loc></url>
+  <url><loc>https://piterdaniel-hub.github.io/confidentialite.html</loc></url>
   <url><loc>https://piterdaniel-hub.github.io/article1.html</loc></url>
 </urlset>
