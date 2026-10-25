@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#0c0c0d">
+  <title>Détails du projet | Rwagaza Tech Solution</title>
+  <link rel="manifest" href="manifest.json">
+  <link rel="apple-touch-icon" href="icon-192.png">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>Rwagaza Tech Solution</h1>
+    <nav aria-label="Menu principal">
+      <a href="index.html">Accueil</a>
+      <a href="projets.html" aria-current="page">Projets</a>
+      <a href="apprendre.html">Apprendre</a>
+      <a href="galerie.html">Galerie</a>
+      <a href="a-propos.html">À propos</a>
+    </nav>
+  </header>
+
+  <main id="detail"></main>
+
+  <a class="wa-flottant" href="https://wa.me/243898560667" target="_blank" rel="noopener" aria-label="Me contacter sur WhatsApp">💬 WhatsApp</a>
+
+  <footer>
+    <p>
+      <a href="index.html">Accueil</a>
+      <a href="projets.html">Projets</a>
+      <a href="apprendre.html">Apprendre</a>
+      <a href="galerie.html">Galerie</a>
+      <a href="a-propos.html">À propos</a>
+    </p>
+    <p>© 2026 Rwagaza Tech Solution</p>
+  </footer>
+
+  <script src="projets-data.js"></script>
+  <script>
+    (function () {
+      var NUMERO = "243898560667";
+      var EMAIL = "piterdaniel604@gmail.com";
+      var main = document.getElementById("detail");
+      var id = new URLSearchParams(location.search).get("id");
+      var p = projets.filter(function (x) { return x.id === id; })[0];
+
+      function el(tag, cls, txt) {
+        var e = document.createElement(tag);
+        if (cls) e.className = cls;
+        if (txt) e.textContent = txt;
+        return e;
+      }
+      function lien(txt, href, cls, externe) {
+        var a = el("a", cls, txt);
+        a.href = href;
+        if (externe) { a.target = "_blank"; a.rel = "noopener"; }
+        return a;
+      }
+
+      if (!p) {
+        main.appendChild(el("h2", null, "Projet introuvable"));
+        main.appendChild(el("p", "sous-titre", "Ce projet n'existe pas ou a été déplacé."));
+        main.appendChild(lien("Voir tous les projets", "projets.html", "bouton"));
+        return;
+      }
+
+      document.title = p.titre + " | Rwagaza Tech Solution";
+      var message = "Bonjour Daniel, je suis intéressé(e) par : " + p.titre;
+      var wa = "https://wa.me/" + NUMERO + "?text=" + encodeURIComponent(message);
+      var mail = "mailto:" + EMAIL + "?subject=" + encodeURIComponent(p.titre) + "&body=" + encodeURIComponent(message);
+
+      // Bannière
+      var hero = el("section", "hero");
+      hero.appendChild(el("span", "badge", p.cat.toUpperCase()));
+      hero.appendChild(el("h2", null, p.titre));
+      hero.appendChild(el("p", null, p.resume));
+      hero.appendChild(lien("Discuter sur WhatsApp", wa, "bouton", true));
+      if (p.action) hero.appendChild(lien(p.action.texte, p.action.lien, "bouton vide"));
+      main.appendChild(hero);
+
+      // Image
+      if (p.image) {
+        var ci = el("div", "carte");
+        var im = el("img");
+        im.src = p.image;
+        im.alt = p.titre;
+        ci.appendChild(im);
+        if (p.credit) ci.appendChild(el("p", "source", p.credit));
+        main.appendChild(ci);
+      }
+
+      // Pour qui
+      main.appendChild(el("h2", null, "Pour qui ?"));
+      var c1 = el("div", "carte");
+      c1.appendChild(el("p", null, p.pour));
+      main.appendChild(c1);
+
+      // Ce que tu obtiens
+      main.appendChild(el("h2", null, "Ce que tu obtiens"));
+      var c2 = el("div", "carte");
+      var ul = el("ul", "puces");
+      p.points.forEach(function (t) { ul.appendChild(el("li", null, t)); });
+      c2.appendChild(ul);
+      main.appendChild(c2);
+
+      // Étapes
+      main.appendChild(el("h2", null, "Comment ça se passe"));
+      var g = el("div", "grille");
+      p.etapes.forEach(function (e, i) {
+        var c = el("article", "carte");
+        c.appendChild(el("span", "numero", String(i + 1)));
+        c.appendChild(el("h3", null, e.t));
+        c.appendChild(el("p", null, e.x));
+        g.appendChild(c);
+      });
+      main.appendChild(g);
+
+      // FAQ
+      if (p.faq && p.faq.length) {
+        main.appendChild(el("h2", null, "Questions fréquentes"));
+        p.faq.forEach(function (f) {
+          var d = el("details", "carte");
+          d.appendChild(el("summary", null, f.q));
+          d.appendChild(el("p", null, f.r));
+          main.appendChild(d);
+        });
+      }
+
+      // Appel à l'action
+      var b = el("section", "bandeau");
+      b.appendChild(el("h2", null, "Prêt à commencer ?"));
+      b.appendChild(el("p", null, "Écris-moi : je te réponds avec plaisir et on voit ensemble ce dont tu as besoin."));
+      b.appendChild(lien("WhatsApp", wa, "bouton", true));
+      b.appendChild(lien("E-mail", mail, "bouton vide"));
+      main.appendChild(b);
+
+      // Autres projets
+      main.appendChild(el("h2", null, "Autres projets"));
+      var autres = el("div", "reseaux");
+      projets.forEach(function (x) {
+        if (x.id !== p.id) autres.appendChild(lien(x.titre, "projet.html?id=" + x.id));
+      });
+      main.appendChild(autres);
+    })();
+  </script>
+  <script src="assistant.js"></script>
+  <script>
+    if ("serviceWorker" in navigator) {
+      window.addEventListener("load", function () {
+        navigator.serviceWorker.register("/sw.js").catch(function () {});
+      });
+    }
+  </script>
+</body>
+        </html>
