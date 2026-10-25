@@ -8,6 +8,9 @@
   <link rel="manifest" href="manifest.json">
   <link rel="apple-touch-icon" href="icon-192.png">
   <link rel="stylesheet" href="style.css">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Rwagaza Tech">
 </head>
 <body>
   <header>
@@ -18,6 +21,7 @@
       <a href="apprendre.html">Apprendre</a>
       <a href="galerie.html">Galerie</a>
       <a href="a-propos.html">À propos</a>
+      <a href="contact.html">Contact</a>
     </nav>
   </header>
 
@@ -26,13 +30,21 @@
   <a class="wa-flottant" href="https://wa.me/243898560667" target="_blank" rel="noopener" aria-label="Me contacter sur WhatsApp">💬 WhatsApp</a>
 
   <footer>
+    <p class="langues">
+      <a href="/" aria-current="true">Français</a>
+      <a href="/en/">English</a>
+      <a href="/es/">Español</a>
+      <a href="/pt/">Português</a>
+    </p>
     <p>
       <a href="index.html">Accueil</a>
       <a href="projets.html">Projets</a>
       <a href="apprendre.html">Apprendre</a>
       <a href="galerie.html">Galerie</a>
       <a href="a-propos.html">À propos</a>
+      <a href="contact.html">Contact</a>
     </p>
+    <p><a href="confidentialite.html">Mentions légales et confidentialité</a></p>
     <p>© 2026 Rwagaza Tech Solution</p>
   </footer>
 
@@ -70,7 +82,6 @@
       var wa = "https://wa.me/" + NUMERO + "?text=" + encodeURIComponent(message);
       var mail = "mailto:" + EMAIL + "?subject=" + encodeURIComponent(p.titre) + "&body=" + encodeURIComponent(message);
 
-      // Bannière
       var hero = el("section", "hero");
       hero.appendChild(el("span", "badge", p.cat.toUpperCase()));
       hero.appendChild(el("h2", null, p.titre));
@@ -79,7 +90,6 @@
       if (p.action) hero.appendChild(lien(p.action.texte, p.action.lien, "bouton vide"));
       main.appendChild(hero);
 
-      // Image
       if (p.image) {
         var ci = el("div", "carte");
         var im = el("img");
@@ -90,13 +100,11 @@
         main.appendChild(ci);
       }
 
-      // Pour qui
       main.appendChild(el("h2", null, "Pour qui ?"));
       var c1 = el("div", "carte");
       c1.appendChild(el("p", null, p.pour));
       main.appendChild(c1);
 
-      // Ce que tu obtiens
       main.appendChild(el("h2", null, "Ce que tu obtiens"));
       var c2 = el("div", "carte");
       var ul = el("ul", "puces");
@@ -104,7 +112,6 @@
       c2.appendChild(ul);
       main.appendChild(c2);
 
-      // Étapes
       main.appendChild(el("h2", null, "Comment ça se passe"));
       var g = el("div", "grille");
       p.etapes.forEach(function (e, i) {
@@ -116,7 +123,6 @@
       });
       main.appendChild(g);
 
-      // FAQ
       if (p.faq && p.faq.length) {
         main.appendChild(el("h2", null, "Questions fréquentes"));
         p.faq.forEach(function (f) {
@@ -127,7 +133,6 @@
         });
       }
 
-      // Appel à l'action
       var b = el("section", "bandeau");
       b.appendChild(el("h2", null, "Prêt à commencer ?"));
       b.appendChild(el("p", null, "Écris-moi : je te réponds avec plaisir et on voit ensemble ce dont tu as besoin."));
@@ -135,7 +140,6 @@
       b.appendChild(lien("E-mail", mail, "bouton vide"));
       main.appendChild(b);
 
-      // Autres projets
       main.appendChild(el("h2", null, "Autres projets"));
       var autres = el("div", "reseaux");
       projets.forEach(function (x) {
@@ -153,4 +157,4 @@
     }
   </script>
 </body>
-        </html>
+</html>
