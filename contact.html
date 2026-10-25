@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#0c0c0d">
+  <title>Contact | Rwagaza Tech Solution</title>
+  <meta name="description" content="Contacte Rwagaza Tech Solution : création de site web, application, accompagnement et guides d'informatique.">
+  <link rel="manifest" href="manifest.json">
+  <link rel="apple-touch-icon" href="icon-192.png">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>Rwagaza Tech Solution</h1>
+    <nav aria-label="Menu principal">
+      <a href="index.html">Accueil</a>
+      <a href="projets.html">Projets</a>
+      <a href="apprendre.html">Apprendre</a>
+      <a href="galerie.html">Galerie</a>
+      <a href="a-propos.html">À propos</a>
+      <a href="contact.html" aria-current="page">Contact</a>
+    </nav>
+  </header>
+
+  <main>
+    <h2>Contact</h2>
+    <p class="sous-titre">Décris-moi ton besoin : ton message est préparé pour WhatsApp ou pour l'e-mail, il te suffit de l'envoyer.</p>
+
+    <div class="carte formulaire">
+      <label for="nom">Ton nom</label>
+      <input id="nom" type="text" placeholder="Ex. : Marie" autocomplete="name">
+
+      <label for="sujet">Ce qui t'intéresse</label>
+      <select id="sujet">
+        <option>Création de site web</option>
+        <option>Site installable comme une application</option>
+        <option>Accompagnement pour débutants</option>
+        <option>Guide : le réseau informatique</option>
+        <option>Autre demande</option>
+      </select>
+
+      <label for="message">Ton message</label>
+      <textarea id="message" placeholder="Explique en quelques phrases ce dont tu as besoin."></textarea>
+
+      <p class="erreur" id="erreur" role="alert"></p>
+
+      <button class="bouton" id="envoyer-wa" type="button">Envoyer sur WhatsApp</button>
+      <button class="bouton vide" id="envoyer-mail" type="button">Envoyer par e-mail</button>
+      <p class="source">Rien n'est enregistré sur ce site : ton message part directement de ton téléphone.</p>
+    </div>
+
+    <h2>Autres moyens</h2>
+    <div class="carte">
+      <div class="reseaux">
+        <a href="https://wa.me/243898560667" target="_blank" rel="noopener">WhatsApp</a>
+        <a href="https://www.facebook.com/cee.travis.daim.n" target="_blank" rel="noopener">Facebook</a>
+        <a href="mailto:piterdaniel604@gmail.com">E-mail</a>
+      </div>
+    </div>
+  </main>
+
+  <a class="wa-flottant" href="https://wa.me/243898560667" target="_blank" rel="noopener" aria-label="Me contacter sur WhatsApp">💬 WhatsApp</a>
+
+  <footer>
+    <p>
+      <a href="index.html">Accueil</a>
+      <a href="projets.html">Projets</a>
+      <a href="apprendre.html">Apprendre</a>
+      <a href="galerie.html">Galerie</a>
+      <a href="a-propos.html">À propos</a>
+      <a href="contact.html">Contact</a>
+    </p>
+    <p>© 2026 Rwagaza Tech Solution</p>
+  </footer>
+
+  <script>
+    (function () {
+      var NUMERO = "243898560667";
+      var EMAIL = "piterdaniel604@gmail.com";
+      var nom = document.getElementById("nom");
+      var sujet = document.getElementById("sujet");
+      var message = document.getElementById("message");
+      var erreur = document.getElementById("erreur");
+
+      function texte() {
+        var n = nom.value.trim();
+        var m = message.value.trim();
+        if (!n || !m) {
+          erreur.textContent = "Écris ton nom et ton message avant d'envoyer.";
+          return null;
+        }
+        erreur.textContent = "";
+        return "Bonjour Daniel, je m'appelle " + n + ".\nSujet : " + sujet.value + "\n\n" + m;
+      }
+
+      document.getElementById("envoyer-wa").onclick = function () {
+        var t = texte();
+        if (t) window.open("https://wa.me/" + NUMERO + "?text=" + encodeURIComponent(t), "_blank", "noopener");
+      };
+      document.getElementById("envoyer-mail").onclick = function () {
+        var t = texte();
+        if (t) location.href = "mailto:" + EMAIL + "?subject=" + encodeURIComponent(sujet.value) + "&body=" + encodeURIComponent(t);
+      };
+    })();
+  </script>
+  <script src="assistant.js"></script>
+  <script>
+    if ("serviceWorker" in navigator) {
+      window.addEventListener("load", function () {
+        navigator.serviceWorker.register("/sw.js").catch(function () {});
+      });
+    }
+  </script>
+</body>
+</html>
