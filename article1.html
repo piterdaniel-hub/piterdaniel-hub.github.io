@@ -2,36 +2,69 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Maîtrise algorithme, la programmation &amp; le code</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#0c0c0d">
+  <title>Maîtrise algorithme, la programmation &amp; le code | Rwagaza Tech Solution</title>
+  <meta name="description" content="De débutant à développeur : comprendre les algorithmes, la programmation et le code, étape par étape.">
+  <link rel="manifest" href="manifest.json">
+  <link rel="apple-touch-icon" href="icon-192.png">
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <h1>Maîtrise algorithme, la programmation &amp; le code</h1>
-  <h2>De débutant à développeur</h2>
+  <header>
+    <h1>Rwagaza Tech Solution</h1>
+    <nav aria-label="Menu principal">
+      <a href="index.html">Accueil</a>
+      <a href="projets.html">Projets</a>
+      <a href="apprendre.html">Apprendre</a>
+      <a href="galerie.html">Galerie</a>
+      <a href="a-propos.html">À propos</a>
+    </nav>
+  </header>
 
-  <img src="1790524879550.jpg" alt="Couverture : Maîtriser les algorithmes, la programmation et le code" style="max-width:100%;">
+  <main>
+    <article>
+      <h2 style="color:#fff;">Maîtrise algorithme, la programmation &amp; le code</h2>
+      <p class="sous-titre">De débutant à développeur</p>
 
-  <p>
-    Dans cet article, j'explique ce que j'apprends sur les algorithmes,
-    la programmation et le code, étape par étape.
-  </p>
+      <img src="1790524879550.jpg" alt="Couverture : Maîtriser les algorithmes, la programmation et le code">
 
-  <h2>1. Qu'est-ce qu'un algorithme ?</h2>
-  <p>
-    Un algorithme est une suite d'instructions claires pour résoudre un problème.
-  </p>
+      <p>Dans cet article, j'explique ce que j'apprends sur les algorithmes, la programmation et le code, étape par étape.</p>
 
-  <h2>2. Qu'est-ce que la programmation ?</h2>
-  <p>
-    Programmer, c'est écrire ces instructions dans un langage que l'ordinateur comprend.
-  </p>
+      <h2>1. Qu'est-ce qu'un algorithme ?</h2>
+      <p>Un algorithme est une suite d'instructions claires pour résoudre un problème.</p>
 
-  <h2>3. Qu'est-ce que le code ?</h2>
-  <p>
-    Le code, ce sont les instructions écrites par le programmeur,
-    par exemple en HTML, Python ou JavaScript.
-  </p>
+      <h2>2. Qu'est-ce que la programmation ?</h2>
+      <p>Programmer, c'est écrire ces instructions dans un langage que l'ordinateur comprend.</p>
 
-  <a href="index.html">Retour à l'accueil</a>
+      <h2>3. Qu'est-ce que le code ?</h2>
+      <p>Le code, ce sont les instructions écrites par le programmeur, par exemple en HTML, Python ou JavaScript.</p>
+
+      <p><a class="bouton" href="apprendre.html">Voir les 65 leçons</a>
+      <a class="bouton vide" href="index.html">Retour à l'accueil</a></p>
+    </article>
+  </main>
+
+  <a class="wa-flottant" href="https://wa.me/243970521444" target="_blank" rel="noopener" aria-label="Me contacter sur WhatsApp">💬 WhatsApp</a>
+
+  <footer>
+    <p>
+      <a href="index.html">Accueil</a>
+      <a href="projets.html">Projets</a>
+      <a href="apprendre.html">Apprendre</a>
+      <a href="galerie.html">Galerie</a>
+      <a href="a-propos.html">À propos</a>
+    </p>
+    <p>© 2026 Rwagaza Tech Solution</p>
+  </footer>
+
+  <script src="assistant.js"></script>
+  <script>
+    if ("serviceWorker" in navigator) {
+      window.addEventListener("load", function () {
+        navigator.serviceWorker.register("/sw.js").catch(function () {});
+      });
+    }
+  </script>
 </body>
-</html>
+  </html>
