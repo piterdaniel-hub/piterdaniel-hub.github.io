@@ -2,27 +2,69 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Mes projets - Rwagaza Tech Solution</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#0c0c0d">
+  <title>Mes projets | Rwagaza Tech Solution</title>
+  <meta name="description" content="Les projets de Rwagaza Tech Solution : site web, guides et réalisations informatiques.">
+  <link rel="manifest" href="manifest.json">
+  <link rel="apple-touch-icon" href="icon-192.png">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <header>
     <h1>Rwagaza Tech Solution</h1>
-    <nav>
+    <nav aria-label="Menu principal">
       <a href="index.html">Accueil</a>
-      <a href="projets.html">Projets</a>
+      <a href="projets.html" aria-current="page">Projets</a>
       <a href="apprendre.html">Apprendre</a>
+      <a href="galerie.html">Galerie</a>
       <a href="a-propos.html">À propos</a>
     </nav>
   </header>
+
   <main>
     <h2>Mes projets</h2>
-    <div class="carte">
-      <h3>Site Rwagaza Tech Solution</h3>
-      <p>Mon site web sur GitHub Pages, fait en HTML et CSS.</p>
+    <p class="sous-titre">Des réalisations concrètes, présentées simplement.</p>
+
+    <div class="grille">
+      <article class="carte">
+        <span class="icone">🌐</span>
+        <span class="etiquette">Site web</span>
+        <h3>Site Rwagaza Tech Solution</h3>
+        <p>Mon site web sur GitHub Pages, fait en HTML, CSS et JavaScript, installable comme une application.</p>
+        <a class="bouton" href="index.html">Voir le site</a>
+      </article>
+
+      <article class="carte">
+        <img src="1000035591.jpg" alt="Couverture : Apprendre et maîtriser le réseau informatique de A à Z">
+        <span class="etiquette">Guide</span>
+        <h3>Apprendre et maîtriser le réseau informatique de A à Z</h3>
+        <p>Un guide complet avec exercices pratiques : notions essentielles, configuration pas à pas, sécurité, optimisation des performances et études de cas réelles.</p>
+        <a class="bouton" href="https://wa.me/243970521444" target="_blank" rel="noopener">Me contacter à ce sujet</a>
+      </article>
     </div>
   </main>
-  <footer>© 2026 Rwagaza Tech Solution</footer>
+
+  <a class="wa-flottant" href="https://wa.me/243970521444" target="_blank" rel="noopener" aria-label="Me contacter sur WhatsApp">💬 WhatsApp</a>
+
+  <footer>
+    <p>
+      <a href="index.html">Accueil</a>
+      <a href="projets.html">Projets</a>
+      <a href="apprendre.html">Apprendre</a>
+      <a href="galerie.html">Galerie</a>
+      <a href="a-propos.html">À propos</a>
+    </p>
+    <p>© 2026 Rwagaza Tech Solution</p>
+  </footer>
+
+  <script src="assistant.js"></script>
+  <script>
+    if ("serviceWorker" in navigator) {
+      window.addEventListener("load", function () {
+        navigator.serviceWorker.register("/sw.js").catch(function () {});
+      });
+    }
+  </script>
 </body>
-</html>
+  </html>
