@@ -2,8 +2,14 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url><loc>https://piterdaniel-hub.github.io/</loc></url>
   <url><loc>https://piterdaniel-hub.github.io/projets.html</loc></url>
+  <url><loc>https://piterdaniel-hub.github.io/projet.html?id=site-web</loc></url>
+  <url><loc>https://piterdaniel-hub.github.io/projet.html?id=application</loc></url>
+  <url><loc>https://piterdaniel-hub.github.io/projet.html?id=accompagnement</loc></url>
+  <url><loc>https://piterdaniel-hub.github.io/projet.html?id=guide-reseau</loc></url>
+  <url><loc>https://piterdaniel-hub.github.io/projet.html?id=article-algorithme</loc></url>
   <url><loc>https://piterdaniel-hub.github.io/apprendre.html</loc></url>
   <url><loc>https://piterdaniel-hub.github.io/galerie.html</loc></url>
   <url><loc>https://piterdaniel-hub.github.io/a-propos.html</loc></url>
+  <url><loc>https://piterdaniel-hub.github.io/contact.html</loc></url>
   <url><loc>https://piterdaniel-hub.github.io/article1.html</loc></url>
 </urlset>
