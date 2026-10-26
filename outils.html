@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#0c0c0d">
+  <title>Outils gratuits : mot de passe, octets, calculatrice réseau | Rwagaza Tech Solution</title>
+  <meta name="description" content="Outils informatiques gratuits : générateur de mot de passe sécurisé, convertisseur d'octets (Ko, Mo, Go, To) et calculatrice réseau (adresse IP et masque).">
+  <link rel="manifest" href="manifest.json">
+  <link rel="apple-touch-icon" href="icon-192.png">
+  <link rel="stylesheet" href="style.css">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Rwagaza Tech">
+</head>
+<body>
+  <header>
+    <h1>Rwagaza Tech Solution</h1>
+    <nav aria-label="Menu principal">
+      <a href="index.html">Accueil</a>
+      <a href="projets.html">Projets</a>
+      <a href="apprendre.html">Apprendre</a>
+      <a href="galerie.html">Galerie</a>
+      <a href="outils.html" aria-current="page">Outils</a>
+      <a href="a-propos.html">À propos</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </header>
+
+  <main>
+    <h2>Outils gratuits</h2>
+    <p class="sous-titre">Trois petits outils utiles. Tout se calcule sur ton téléphone : rien n'est envoyé nulle part.</p>
+
+    <section class="carte outil" aria-labelledby="t-mdp">
+      <h3 id="t-mdp">🔐 Générateur de mot de passe</h3>
+      <label for="mdp-long">Longueur : <b id="mdp-long-val">16</b> caractères</label>
+      <input id="mdp-long" type="range" min="8" max="64" value="16">
+      <label class="case"><input type="checkbox" id="mdp-maj" checked> Majuscules</label>
+      <label class="case"><input type="checkbox" id="mdp-min" checked> Minuscules</label>
+      <label class="case"><input type="checkbox" id="mdp-chi" checked> Chiffres</label>
+      <label class="case"><input type="checkbox" id="mdp-sym" checked> Symboles</label>
+      <div class="resultat"><div class="mdp-sortie" id="mdp-sortie"></div></div>
+      <p class="sous-titre" id="mdp-force"></p>
+      <p class="erreur" id="mdp-erreur" role="alert"></p>
+      <button class="bouton" id="mdp-generer" type="button">Générer</button>
+      <button class="bouton vide" id="mdp-copier" type="button">Copier</button>
+      <p class="source">Les caractères qui se ressemblent (I, l, 1, O, 0) sont exclus pour éviter les erreurs de recopie.</p>
+    </section>
+
+    <section class="carte outil" aria-labelledby="t-conv">
+      <h3 id="t-conv">💾 Convertisseur d'octets</h3>
+      <label for="conv-valeur">Valeur</label>
+      <input id="conv-valeur" type="text" inputmode="decimal" value="1">
+      <label for="conv-unite">Unité de départ</label>
+      <select id="conv-unite"></select>
+      <label for="conv-base">Système</label>
+      <select id="conv-base">
+        <option value="1000">Décimal (1 Ko = 1 000 octets)</option>
+        <option value="1024">Binaire (1 Kio = 1 024 octets)</option>
+      </select>
+      <div class="resultat" id="conv-sortie"></div>
+      <p class="source">Les fabricants de stockage utilisent le système décimal ; les systèmes d'exploitation affichent souvent le binaire, d'où les petites différences de capacité.</p>
+    </section>
+
+    <section class="carte outil" aria-labelledby="t-cidr">
+      <h3 id="t-cidr">🌐 Calculatrice réseau (IPv4)</h3>
+      <label for="cidr-entree">Adresse IP et préfixe</label>
+      <input id="cidr-entree" type="text" inputmode="text" value="192.168.1.10/24" placeholder="192.168.1.10/24" autocomplete="off">
+      <p class="erreur" id="cidr-erreur" role="alert"></p>
+      <button class="bouton" id="cidr-calculer" type="button">Calculer</button>
+      <div class="resultat" id="cidr-sortie"></div>
+      <p class="source">Le préfixe (par exemple /24) indique combien de bits appartiennent au réseau. Plus il est grand, plus le réseau est petit.</p>
+    </section>
+  </main>
+
+  <a class="wa-flottant" href="https://wa.me/243898560667" target="_blank" rel="noopener" aria-label="Me contacter sur WhatsApp">💬 WhatsApp</a>
+
+  <footer>
+    <p class="langues">
+      <a href="/" aria-current="true">Français</a>
+      <a href="/en/">English</a>
+      <a href="/es/">Español</a>
+      <a href="/pt/">Português</a>
+    </p>
+    <p>
+      <a href="index.html">Accueil</a>
+      <a href="projets.html">Projets</a>
+      <a href="apprendre.html">Apprendre</a>
+      <a href="galerie.html">Galerie</a>
+      <a href="outils.html">Outils</a>
+      <a href="a-propos.html">À propos</a>
+      <a href="contact.html">Contact</a>
+    </p>
+    <p><a href="confidentialite.html">Mentions légales et confidentialité</a></p>
+    <p>© 2026 Rwagaza Tech Solution</p>
+  </footer>
+
+  <script>
+    (function () {
+      /* ===== 1. Générateur de mot de passe ===== */
+      var longEl = document.getElementById("mdp-long");
+      var longVal = document.getElementById("mdp-long-val");
+      var cMaj = document.getElementById("mdp-maj");
+      var cMin = document.getElementById("mdp-min");
+      var cChi = document.getElementById("mdp-chi");
+      var cSym = document.getElementById("mdp-sym");
+      var sortie = document.getElementById("mdp-sortie");
+      var force = document.getElementById("mdp-force");
+      var erreurMdp = document.getElementById("mdp-erreur");
+
+      function alea(n) {
+        var t = new Uint32Array(1);
+        var limite = Math.floor(4294967296 / n) * n;
+        do { crypto.getRandomValues(t); } while (t[0] >= limite);
+        return t[0] % n;
+      }
+
+      function genererMdp() {
+        var longueur = parseInt(longEl.value, 10);
+        longVal.textContent = longueur;
+        var jeux = [];
+        if (cMaj.checked) jeux.push("ABCDEFGHJKLMNPQRSTUVWXYZ");
+        if (cMin.checked) jeux.push("abcdefghijkmnopqrstuvwxyz");
+        if (cChi.checked) jeux.push("23456789");
+        if (cSym.checked) jeux.push("!@#$%&*?-_=+");
+        if (!jeux.length) {
+          sortie.textContent = "";
+          force.textContent = "";
+          erreurMdp.textContent = "Choisis au moins un type de caractère.";
+          return;
+        }
+        erreurMdp.textContent = "";
+        var tout = jeux.join("");
+        var res = [];
+        jeux.forEach(function (j) { res.push(j.charAt(alea(j.length))); });
+        while (res.length < longueur) res.push(tout.charAt(alea(tout.length)));
+        for (var i = res.length - 1; i > 0; i--) {
+          var k = alea(i + 1);
+          var tmp = res[i]; res[i] = res[k]; res[k] = tmp;
+        }
+        sortie.textContent = res.join("");
+        var bits = longueur * Math.log(tout.length) / Math.log(2);
+        var niveau = bits < 40 ? "faible" : bits < 60 ? "moyenne" : bits < 80 ? "forte" : "très forte";
+        force.textContent = "Force : " + niveau + " (environ " + Math.round(bits) + " bits)";
+      }
+
+      longEl.oninput = genererMdp;
+      [cMaj, cMin, cChi, cSym].forEach(function (c) { c.onchange = genererMdp; });
+      document.getElementById("mdp-generer").onclick = genererMdp;
+      document.getElementById("mdp-copier").onclick = function () {
+        var t = sortie.textContent;
+        if (!t) return;
+        var btn = this;
+        function ok() {
+          btn.textContent = "Copié ✓";
+          setTimeout(function () { btn.textContent = "Copier"; }, 1500);
+        }
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(t).then(ok).catch(function () {});
+        } else {
+          var ta = document.createElement("textarea");
+          ta.value = t;
+          document.body.appendChild(ta);
+          ta.select();
+          try { document.execCommand("copy"); ok(); } catch (e) {}
+          document.body.removeChild(ta);
+        }
+      };
+      genererMdp();
+
+      /* ===== 2. Convertisseur d'octets ===== */
+      var valeur = document.getElementById("conv-valeur");
+      var uniteSel = document.getElementById("conv-unite");
+      var baseSel = document.getElementById("conv-base");
+      var sortieConv = document.getElementById("conv-sortie");
+      var NOMS_DEC = ["octet", "Ko", "Mo", "Go", "To"];
+      var NOMS_BIN = ["octet", "Kio", "Mio", "Gio", "Tio"];
+
+      function majUnites() {
+        var base = parseInt(baseSel.value, 10);
+        var noms = base === 1024 ? NOMS_BIN : NOMS_DEC;
+        var i = uniteSel.selectedIndex < 0 ? 2 : uniteSel.selectedIndex;
+        uniteSel.innerHTML = "";
+        noms.forEach(function (n, k) {
+          var o = document.createElement("option");
+          o.value = k;
+          o.textContent = n;
+          uniteSel.appendChild(o);
+        });
+        uniteSel.selectedIndex = i;
+      }
+
+      function convertir() {
+        var base = parseInt(baseSel.value, 10);
+        var noms = base === 1024 ? NOMS_BIN : NOMS_DEC;
+        var v = parseFloat(valeur.value.replace(",", "."));
+        sortieConv.textContent = "";
+        if (isNaN(v) || v < 0) {
+          sortieConv.textContent = "Entre un nombre positif.";
+          return;
+        }
+        var octets = v * Math.pow(base, parseInt(uniteSel.value, 10));
+        noms.forEach(function (nom, k) {
+          var d = document.createElement("div");
+          var s = document.createElement("span");
+          s.textContent = nom;
+          var b = document.createElement("b");
+          b.textContent = (octets / Math.pow(base, k)).toLocaleString("fr-FR", { maximumFractionDigits: 6 });
+          d.appendChild(s);
+          d.appendChild(b);
+          sortieConv.appendChild(d);
+        });
+      }
+
+      valeur.oninput = convertir;
+      uniteSel.onchange = convertir;
+      baseSel.onchange = function () { majUnites(); convertir(); };
+      majUnites();
+      uniteSel.selectedIndex = 2;
+      convertir();
+
+      /* ===== 3. Calculatrice réseau ===== */
+      var cidrEl = document.getElementById("cidr-entree");
+      var cidrSortie = document.getElementById("cidr-sortie");
+      var cidrErreur = document.getElementById("cidr-erreur");
+
+      function versIp(n) {
+        return [(n >>> 24) & 255, (n >>> 16) & 255, (n >>> 8) & 255, n & 255].join(".");
+      }
+      function ligne(nom, val) {
+        var d = document.createElement("div");
+        var s = document.createElement("span");
+        s.textContent = nom;
+        var b = document.createElement("b");
+        b.textContent = val;
+        d.appendChild(s);
+        d.appendChild(b);
+        cidrSortie.appendChild(d);
+      }
+
+      function calculer() {
+        cidrSortie.textContent = "";
+        var m = /^\s*(\d{1,3})\.(\d{1,3})\.(\d{1,3})\.(\d{1,3})\/(\d{1,2})\s*$/.exec(cidrEl.value);
+        if (!m) {
+          cidrErreur.textContent = "Format attendu : 192.168.1.10/24";
+          return;
+        }
+        var o = [+m[1], +m[2], +m[3], +m[4]];
+        var p = +m[5];
+        if (o.some(function (x) { return x > 255; }) || p > 32) {
+          cidrErreur.textContent = "Adresse ou préfixe invalide (octets de 0 à 255, préfixe de 0 à 32).";
+          return;
+        }
+        cidrErreur.textContent = "";
+
+        var ip = o[0] * 16777216 + o[1] * 65536 + o[2] * 256 + o[3];
+        var masque = p === 0 ? 0 : (0xFFFFFFFF << (32 - p)) >>> 0;
+        var reseau = (ip & masque) >>> 0;
+        var diffusion = (reseau | ((~masque) >>> 0)) >>> 0;
+        var total = Math.pow(2, 32 - p);
+        var premier, dernier, hotes;
+        if (p <= 30) { premier = reseau + 1; dernier = diffusion - 1; hotes = total - 2; }
+        else if (p === 31) { premier = reseau; dernier = diffusion; hotes = 2; }
+        else { premier = ip; dernier = ip; hotes = 1; }
+
+        var type = "Publique";
+        if (o[0] === 10 || (o[0] === 172 && o[1] >= 16 && o[1] <= 31) || (o[0] === 192 && o[1] === 168)) type = "Privée";
+        else if (o[0] === 127) type = "Boucle locale (cet appareil)";
+        else if (o[0] === 169 && o[1] === 254) type = "Adresse automatique (APIPA)";
+
+        ligne("Masque", versIp(masque) + " (/" + p + ")");
+        ligne("Adresse réseau", versIp(reseau));
+        ligne("Première adresse", versIp(premier));
+        ligne("Dernière adresse", versIp(dernier));
+        ligne("Diffusion (broadcast)", versIp(diffusion));
+        ligne("Hôtes utilisables", hotes.toLocaleString("fr-FR"));
+        ligne("Type d'adresse", type);
+      }
+
+      document.getElementById("cidr-calculer").onclick = calculer;
+      cidrEl.onkeydown = function (e) { if (e.key === "Enter") calculer(); };
+      calculer();
+    })();
+  </script>
+  <script src="assistant.js"></script>
+  <script>
+    if ("serviceWorker" in navigator) {
+      window.addEventListener("load", function () {
+        navigator.serviceWorker.register("/sw.js").catch(function () {});
+      });
+    }
+  </script>
+</body>
+</html>
