@@ -196,6 +196,10 @@ var lecons = [
   jour.appendChild(pj);
   champ.parentNode.insertBefore(jour, champ);
 
+  // Recherche venant d'un lien (apprendre.html?q=serveur)
+  var q0 = new URLSearchParams(location.search).get("q");
+  if (q0) champ.value = q0;
+
   champ.oninput = afficher;
   afficher();
 
