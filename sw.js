@@ -1,7 +1,7 @@
-const CACHE = "rwagaza-v6";
+const CACHE = "rwagaza-v9";
 const FICHIERS = [
   "/", "/index.html", "/projets.html", "/projet.html", "/apprendre.html",
-  "/galerie.html", "/a-propos.html", "/contact.html", "/article1.html",
+  "/galerie.html", "/outils.html", "/a-propos.html", "/contact.html", "/article1.html",
   "/style.css", "/lecons.js", "/galerie.js", "/projets-data.js",
   "/publications.js", "/assistant.js"
 ];
