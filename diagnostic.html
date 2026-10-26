@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <title>Diagnostic du site</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .diag { list-style:none; padding:0; margin:0; }
+    .diag li { padding:5px 0; border-bottom:1px solid #2b2b2e; word-break:break-all; }
+    .ok { color:#7ee787; }
+    .ko { color:#ff8a80; font-weight:bold; }
+  </style>
+</head>
+<body>
+  <header><h1>Diagnostic du site</h1></header>
+  <main>
+    <p class="sous-titre">Cette page vérifie que chaque fichier existe et que tes scripts se chargent sans erreur. Attends quelques secondes.</p>
+    <div id="resume" class="carte">Test en cours...</div>
+    <div id="resultats"></div>
+  </main>
+
+  <script>
+    (function () {
+      var groupes = [
+        { nom: "Pages", fichiers: ["index.html", "projets.html", "projet.html", "apprendre.html", "galerie.html", "a-propos.html", "contact.html", "article1.html", "confidentialite.html", "404.html", "en/index.html", "es/index.html", "pt/index.html"] },
+        { nom: "Scripts et réglages", fichiers: ["style.css", "lecons.js", "galerie.js", "projets-data.js", "publications.js", "assistant.js", "sw.js", "manifest.json", "sitemap.xml", "robots.txt"] },
+        { nom: "Icônes et photos", fichiers: ["icon-192.png", "icon-512.png", "1790524879550.jpg", "1000028658.jpg", "FB_IMG_1789930009984.jpg", "1000035591.jpg"] },
+        { nom: "Images de la galerie", fichiers: ["1000035593.jpg", "1000035592.jpg", "1000035582.jpg", "1000035599.jpg", "1000047360.jpg", "1000035597.jpg", "1000039704.jpg", "1000047366.jpg", "1000038970.jpg", "1000035581.jpg", "1000039703.jpg", "1000039701.jpg", "1000046225.jpg", "1000046226.jpg", "1000046228.jpg", "1000035580.jpg", "1000035595.jpg", "1000035594.jpg"] }
+      ];
+
+      var erreursJS = [];
+      window.addEventListener("error", function (e) {
+        if (e.filename) erreursJS.push(e.filename.split("/").pop().split("?")[0] + ", ligne " + e.lineno + " : " + e.message);
+      });
+
+      var resultats = document.getElementById("resultats");
+      var resume = document.getElementById("resume");
+      var manquants = [];
+
+      function tester(f) {
+        return fetch(f + "?t=" + Date.now(), { cache: "no-store" })
+          .then(function (r) { return r.ok; })
+          .catch(function () { return false; });
+      }
+
+      function ligne(ul, texte, ok, detail) {
+        var li = document.createElement("li");
+        li.className = ok ? "ok" : "ko";
+        li.textContent = (ok ? "✅ " : "❌ ") + texte + (detail ? " : " + detail : "");
+        ul.appendChild(li);
+      }
+
+      function carte(titre) {
+        var c = document.createElement("div");
+        c.className = "carte";
+        var h = document.createElement("h3");
+        h.textContent = titre;
+        var ul = document.createElement("ul");
+        ul.className = "diag";
+        c.appendChild(h);
+        c.appendChild(ul);
+        resultats.appendChild(c);
+        return ul;
+      }
+
+      var chaine = Promise.resolve();
+      groupes.forEach(function (g) {
+        var ul = carte(g.nom);
+        g.fichiers.forEach(function (f) {
+          chaine = chaine.then(function () { return tester(f); }).then(function (ok) {
+            ligne(ul, f, ok, ok ? "" : "introuvable");
+            if (!ok) manquants.push(f);
+          });
+        });
+      });
+
+      function charger(src, nom) {
+        return new Promise(function (resolve) {
+          var s = document.createElement("script");
+          s.src = src + "?t=" + Date.now();
+          s.onload = s.onerror = function () {
+            resolve(typeof window[nom] !== "undefined" ? window[nom] : null);
+          };
+          document.head.appendChild(s);
+        });
+      }
+
+      var problemesScripts = 0;
+      chaine = chaine.then(function () {
+        var ul = carte("Données chargées par les scripts");
+        return charger("lecons.js", "lecons").then(function (d) {
+          if (d) ligne(ul, "lecons.js", true, d.length + " leçons"); else { ligne(ul, "lecons.js", false, "erreur dans le fichier"); problemesScripts++; }
+          return charger("galerie.js", "galerie");
+        }).then(function (d) {
+          if (d) ligne(ul, "galerie.js", true, d.length + " images"); else { ligne(ul, "galerie.js", false, "erreur dans le fichier"); problemesScripts++; }
+          return charger("projets-data.js", "projets");
+        }).then(function (d) {
+          if (d) ligne(ul, "projets-data.js", true, d.length + " projets"); else { ligne(ul, "projets-data.js", false, "erreur dans le fichier"); problemesScripts++; }
+        });
+      });
+
+      chaine.then(function () {
+        var total = manquants.length + problemesScripts;
+        if (total === 0 && erreursJS.length === 0) {
+          resume.innerHTML = "";
+          resume.textContent = "✅ Tout est en ordre : tous les fichiers existent et les scripts se chargent.";
+          return;
+        }
+        resume.innerHTML = "";
+        var t = document.createElement("p");
+        t.className = "ko";
+        t.textContent = "❌ " + (manquants.length + problemesScripts + erreursJS.length) + " problème(s) à corriger.";
+        resume.appendChild(t);
+        if (manquants.length) {
+          var p1 = document.createElement("p");
+          p1.textContent = "Fichiers à envoyer dans ton dépôt : " + manquants.join(", ");
+          resume.appendChild(p1);
+        }
+        erreursJS.forEach(function (m) {
+          var p2 = document.createElement("p");
+          p2.className = "ko";
+          p2.textContent = "Erreur de code : " + m;
+          resume.appendChild(p2);
+        });
+      });
+    })();
+  </script>
+</body>
+  </html>
