@@ -7,21 +7,23 @@
   // ===== Connaissances : ajoute tes propres sujets ici =====
   var sujets = [
     { mots: ["bonjour", "salut", "hello", "bonsoir", "coucou", "hey"],
-      texte: "Bonjour ! Je suis l'assistant de Rwagaza Tech Solution. Je peux te parler des projets, des articles, de Daniel ou de comment le contacter." },
+      texte: "Bonjour ! Je suis l'assistant de Rwagaza Tech Solution. Je peux te parler des projets, des leçons, des outils, de Daniel ou de comment le contacter." },
     { mots: ["aide", "aider", "help", "que peux", "quoi faire", "possible"],
-      texte: "Je peux t'orienter sur le site : les projets, les articles pour apprendre, les serveurs, le profil de Daniel, ou le contact. Pose-moi ta question." },
+      texte: "Je peux t'orienter sur le site : les projets, les leçons pour apprendre, les outils gratuits, la galerie, le profil de Daniel, ou le contact. Pose-moi ta question." },
     { mots: ["projet", "realisation", "travail", "portfolio", "oeuvre"],
       texte: "Tu peux découvrir mes projets sur la page Projets.", lien: "projets.html", nom: "Voir les projets" },
-    { mots: ["apprendre", "cours", "tutoriel", "article", "formation", "debutant", "etudier"],
-      texte: "Les articles et explications pour débutants sont sur la page Apprendre.", lien: "apprendre.html", nom: "Aller à Apprendre" },
+    { mots: ["apprendre", "cours", "tutoriel", "article", "formation", "debutant", "etudier", "lecon"],
+      texte: "Les 65 leçons pour débutants sont sur la page Apprendre, avec recherche et filtres.", lien: "apprendre.html", nom: "Aller à Apprendre" },
+    { mots: ["outil", "mot de passe", "password", "convertisseur", "octet", "masque", "cidr", "calculatrice", "generateur"],
+      texte: "Les outils gratuits : générateur de mot de passe, convertisseur d'octets et calculatrice réseau.", lien: "outils.html", nom: "Ouvrir les outils" },
     { mots: ["galerie", "image", "infographie", "schema"],
       texte: "La galerie rassemble des infographies sur l'IA, le web, Linux, les langages et la sécurité.", lien: "galerie.html", nom: "Ouvrir la galerie" },
     { mots: ["serveur", "dns", "proxy", "base de donnees", "hebergement"],
-      texte: "J'explique les neuf types de serveurs : base de données, fichiers, DNS, application, impression, mail, web, proxy et jeux. C'est sur la page Apprendre.", lien: "apprendre.html", nom: "Voir les serveurs" },
+      texte: "J'explique les neuf types de serveurs : base de données, fichiers, DNS, application, impression, mail, web, proxy et jeux. Tu les trouves dans les leçons.", lien: "apprendre.html?q=serveur", nom: "Voir les leçons sur les serveurs" },
     { mots: ["algorithme", "programmation", "code", "developpeur", "programmer", "coder"],
       texte: "Mon article Maîtrise algorithme, la programmation et le code explique tout, de débutant à développeur.", lien: "article1.html", nom: "Lire l'article" },
     { mots: ["reseau", "wifi", "routeur", "lan", "wan", "internet"],
-      texte: "Le réseau informatique fait partie des sujets du site. Tu trouveras les publications sur la page Projets.", lien: "projets.html", nom: "Voir les projets" },
+      texte: "Le réseau informatique fait partie des sujets du site. Tu peux lire les leçons et utiliser la calculatrice réseau.", lien: "apprendre.html?q=reseau", nom: "Voir les leçons réseau" },
     { mots: ["site", "creation", "creer", "web", "html", "css", "application"],
       texte: "Je crée des sites web simples, rapides et lisibles sur téléphone. Écris à Daniel sur WhatsApp pour en parler.", lien: "https://wa.me/" + NUMERO_WHATSAPP, nom: "Discuter sur WhatsApp" },
     { mots: ["prix", "tarif", "devis", "cout", "combien", "payer"],
@@ -29,13 +31,13 @@
     { mots: ["qui", "daniel", "propos", "fondateur", "presentation", "createur"],
       texte: "Daniel est le fondateur de Rwagaza Tech Solution. Son profil est sur la page À propos.", lien: "a-propos.html", nom: "Voir À propos" },
     { mots: ["contact", "contacter", "whatsapp", "mail", "email", "facebook", "joindre", "numero", "appeler"],
-      texte: "Le moyen le plus rapide de joindre Daniel est WhatsApp.", lien: "https://wa.me/" + NUMERO_WHATSAPP, nom: "Ouvrir WhatsApp" },
+      texte: "Le moyen le plus rapide de joindre Daniel est WhatsApp. Tu peux aussi utiliser le formulaire de contact.", lien: "https://wa.me/" + NUMERO_WHATSAPP, nom: "Ouvrir WhatsApp" },
     { mots: ["merci", "super", "parfait", "genial", "bravo"],
       texte: "Avec plaisir ! N'hésite pas si tu as d'autres questions." },
     { mots: ["au revoir", "bye", "a bientot", "salut a"],
       texte: "À bientôt sur Rwagaza Tech Solution !" }
   ];
-  var defaut = "Je n'ai pas bien compris, mais je peux t'aider sur les projets, les articles, les serveurs, Daniel ou le contact. Tu peux aussi écrire directement à Daniel.";
+  var defaut = "Je n'ai pas bien compris, mais je peux t'aider sur les projets, les leçons, les outils, Daniel ou le contact. Tu peux aussi écrire directement à Daniel.";
 
   function normaliser(t) {
     return t.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
@@ -87,6 +89,9 @@
     .ia-saisie .ia-micro{background:#2b2b2e;color:#fff;font-size:1.1rem}
     .ia-saisie .ia-micro.ecoute{background:#d93025;animation:ia-pouls 1s infinite}
     @keyframes ia-pouls{50%{opacity:.5}}
+    .haut{position:fixed;right:16px;bottom:76px;z-index:60;width:44px;height:44px;border-radius:50%;border:1px solid #ffa500;background:#1a1a1c;color:#ffa500;font-size:1.3rem;cursor:pointer;display:none}
+    .haut.visible{display:block}
+    .progres{position:fixed;top:0;left:0;height:3px;width:0;background:#ffa500;z-index:300}
   `;
   document.head.appendChild(css);
 
@@ -201,7 +206,7 @@
   }
 
   // ===== Actions =====
-  ["Projets", "Apprendre", "Galerie", "Qui est Daniel ?", "Contact"].forEach(function (t) {
+  ["Projets", "Apprendre", "Outils", "Galerie", "Qui est Daniel ?", "Contact"].forEach(function (t) {
     var b = document.createElement("button");
     b.textContent = t;
     b.onclick = function () { poser(t); };
@@ -245,4 +250,38 @@
   };
 
   ajouter("Bonjour ! Je suis l'assistant du site. Écris ta question ou appuie sur le micro pour me parler.", "ia-bot");
+
+  // ===== Lien « Outils » ajouté au menu de toutes les pages =====
+  var menu = document.querySelector("header nav");
+  if (menu && !menu.querySelector('a[href="outils.html"]')) {
+    var lienOutils = document.createElement("a");
+    lienOutils.href = "outils.html";
+    lienOutils.textContent = "Outils";
+    var apropos = menu.querySelector('a[href="a-propos.html"]');
+    if (apropos) menu.insertBefore(lienOutils, apropos);
+    else menu.appendChild(lienOutils);
+  }
+
+  // ===== Bouton « Retour en haut » et barre de progression =====
+  var haut = document.createElement("button");
+  haut.className = "haut";
+  haut.textContent = "↑";
+  haut.setAttribute("aria-label", "Retour en haut de la page");
+  haut.onclick = function () { window.scrollTo({ top: 0, behavior: "smooth" }); };
+  document.body.appendChild(haut);
+
+  var progres = document.createElement("div");
+  progres.className = "progres";
+  document.body.appendChild(progres);
+
+  function majScroll() {
+    var h = document.documentElement;
+    var total = h.scrollHeight - h.clientHeight;
+    var pct = total > 0 ? (h.scrollTop / total) * 100 : 0;
+    progres.style.width = pct + "%";
+    if (h.scrollTop > 500) haut.classList.add("visible");
+    else haut.classList.remove("visible");
+  }
+  window.addEventListener("scroll", majScroll, { passive: true });
+  majScroll();
 })();
