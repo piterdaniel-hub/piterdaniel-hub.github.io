@@ -159,3 +159,17 @@ footer a:hover { color:var(--or); }
   .carte { border:1px solid #ccc; background:#fff; }
   a { color:#000; }
   }
+/* ===== Page Outils ===== */
+.outil label { display:block; margin:12px 0 6px; font-weight:bold; }
+.outil input[type="text"], .outil select { width:100%; background:#0c0c0d; color:#fff; border:1px solid var(--bord); border-radius:10px; padding:12px; font-size:1rem; font-family:inherit; }
+.outil input[type="text"]:focus, .outil select:focus { outline:2px solid var(--or); }
+.outil input[type="range"] { width:100%; accent-color:var(--or); }
+.outil .case { display:flex; align-items:center; gap:8px; margin:8px 0; font-weight:normal; }
+.outil .case input { width:auto; accent-color:var(--or); }
+.outil .bouton { border:0; cursor:pointer; font-size:1rem; }
+.outil .resultat { background:#0c0c0d; border:1px solid var(--bord); border-radius:10px; padding:12px; margin-top:12px; word-break:break-all; }
+.outil .resultat div { display:flex; justify-content:space-between; gap:10px; padding:4px 0; border-bottom:1px solid #1f1f22; }
+.outil .resultat div:last-child { border-bottom:0; }
+.outil .resultat b { color:var(--or); text-align:right; }
+.outil .erreur { color:#ff8a80; min-height:1.2em; margin:8px 0 0; }
+.mdp-sortie { font-family:monospace; font-size:1.1rem; color:#fff; }
