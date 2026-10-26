@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <title>Mes photos | Rwagaza Tech Solution</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .nom { font-family:monospace; font-size:.85rem; word-break:break-all; margin:8px 0 0; color:#fff; }
+    .num { color:var(--or); font-weight:bold; }
+    .grille .carte img { height:200px; }
+  </style>
+</head>
+<body>
+  <header><h1>Mes photos</h1></header>
+  <main>
+    <p class="sous-titre">Chaque photo du dépôt avec son nom exact. Fais défiler et envoie-moi des captures d'écran.</p>
+    <p id="compteur" class="sous-titre">Chargement...</p>
+    <div id="liste" class="grille"></div>
+  </main>
+
+  <script>
+    (function () {
+      var secours = [
+        "1000028658.jpg", "1789899272356.jpg", "1790242233619.jpg", "1790260798984.jpg",
+        "1790267074737.jpg", "1790314205780.jpg", "1790483343207.jpg", "1790523858511.jpg",
+        "1790524367891.jpg", "1790524572360.jpg", "1790524879550.jpg", "1790643293234.jpg",
+        "1791139581797.jpg", "1791610214979.jpg", "1791611445652.jpg", "1791692629952.jpg",
+        "1791700439039.jpg", "1791836458857.jpg", "1791836483732.jpg", "1792649798535.jpg",
+        "1792649897621.jpg", "1792829036334.jpg", "1792838509092.jpg", "FB_IMG_1789930009984.jpg"
+      ];
+      var liste = document.getElementById("liste");
+      var compteur = document.getElementById("compteur");
+
+      function afficher(noms) {
+        liste.innerHTML = "";
+        noms.forEach(function (nom, i) {
+          var c = document.createElement("div");
+          c.className = "carte";
+          var im = document.createElement("img");
+          im.src = nom;
+          im.alt = nom;
+          im.loading = "lazy";
+          im.onerror = function () { im.style.opacity = "0.2"; };
+          var p = document.createElement("p");
+          p.className = "nom";
+          var n = document.createElement("span");
+          n.className = "num";
+          n.textContent = (i + 1) + ". ";
+          p.appendChild(n);
+          p.appendChild(document.createTextNode(nom));
+          c.appendChild(im);
+          c.appendChild(p);
+          liste.appendChild(c);
+        });
+        compteur.textContent = noms.length + " photos";
+      }
+
+      fetch("https://api.github.com/repos/piterdaniel-hub/piterdaniel-hub.github.io/contents/?ref=main")
+        .then(function (r) { return r.json(); })
+        .then(function (fichiers) {
+          var noms = fichiers
+            .filter(function (f) { return f.type === "file" && /\.(jpe?g|png)$/i.test(f.name) && !/^icon-/.test(f.name); })
+            .map(function (f) { return f.name; })
+            .sort();
+          afficher(noms.length ? noms : secours);
+        })
+        .catch(function () { afficher(secours); });
+    })();
+  </script>
+</body>
+  </html>
