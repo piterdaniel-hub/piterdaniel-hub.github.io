@@ -1,4 +1,4 @@
-const CACHE = "rwagaza-v9";
+const CACHE = "rwagaza-v10";
 const FICHIERS = [
   "/", "/index.html", "/projets.html", "/projet.html", "/apprendre.html",
   "/galerie.html", "/outils.html", "/a-propos.html", "/contact.html", "/article1.html",
