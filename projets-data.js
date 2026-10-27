@@ -81,7 +81,7 @@ var projets = [
     id: "guide-reseau",
     titre: "Guide : le réseau informatique de A à Z",
     cat: "Guide",
-    image: "1000035591.jpg",
+    image: "1790267074737.jpg",
     resume: "Un guide complet avec exercices pratiques pour comprendre, configurer, sécuriser et optimiser un réseau.",
     pour: "Étudiants, techniciens débutants et passionnés qui veulent maîtriser les bases des réseaux.",
     points: [
