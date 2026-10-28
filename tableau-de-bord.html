@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="theme-color" content="#0c0c0d">
+  <title>Tableau de bord | Rwagaza Tech Solution</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .cases { display:grid; grid-template-columns:repeat(auto-fit,minmax(140px,1fr)); gap:12px; }
+    .case-stat { background:var(--carte); border:1px solid var(--bord); border-radius:12px; padding:14px 10px; text-align:center; }
+    .case-stat b { display:block; color:var(--or); font-size:1.5rem; }
+    .case-stat span { color:var(--gris); font-size:.85rem; }
+    .champs { display:grid; gap:10px; grid-template-columns:repeat(auto-fit,minmax(160px,1fr)); }
+    .champs input, .champs select, .champs textarea { width:100%; background:#0c0c0d; color:#fff; border:1px solid var(--bord); border-radius:10px; padding:12px; font-size:1rem; font-family:inherit; }
+    .champs input:focus, .champs select:focus { outline:2px solid var(--or); }
+    .contact { border:1px solid var(--bord); border-radius:12px; padding:12px; margin:10px 0; background:#121214; }
+    .contact h4 { margin:0 0 4px; color:#fff; }
+    .contact p { margin:2px 0; color:#ccc; font-size:.92rem; }
+    .contact select { background:#0c0c0d; color:#fff; border:1px solid var(--bord); border-radius:8px; padding:6px; }
+    .contact .mini { background:transparent; color:#ff8a80; border:1px solid #ff8a80; border-radius:16px; padding:4px 12px; cursor:pointer; margin-left:8px; }
+    .barre { background:#2b2b2e; border-radius:10px; height:14px; overflow:hidden; margin:10px 0; }
+    .barre div { background:var(--or); height:100%; width:0; transition:width .4s; }
+    .ok { color:#7ee787; } .ko { color:#ff8a80; font-weight:bold; }
+    .liste-test { list-style:none; padding:0; margin:10px 0 0; font-size:.9rem; }
+    .liste-test li { padding:3px 0; border-bottom:1px solid #1f1f22; word-break:break-all; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Tableau de bord</h1>
+    <nav aria-label="Menu principal">
+      <a href="index.html">Accueil</a>
+      <a href="projets.html">Projets</a>
+      <a href="apprendre.html">Apprendre</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </header>
+
+  <main>
+    <p class="sous-titre">Tes chiffres restent sur cet appareil : rien n'est envoyé sur Internet. Mets cette page en favori. Ne note pas d'informations très privées de tes clients.</p>
+
+    <h2>Objectif du mois</h2>
+    <div class="carte">
+      <div class="champs">
+        <div>
+          <label for="objectif">Objectif ($)</label>
+          <input id="objectif" type="number" min="0" inputmode="decimal" value="10000">
+        </div>
+        <div>
+          <label for="panier">Prix moyen d'une vente ($)</label>
+          <input id="panier" type="number" min="1" inputmode="decimal" value="300">
+        </div>
+      </div>
+      <div class="barre"><div id="barre"></div></div>
+      <p id="resume-objectif" class="sous-titre"></p>
+    </div>
+
+    <h2>Tes chiffres</h2>
+    <div class="cases" id="cases"></div>
+
+    <h2>Ajouter un contact</h2>
+    <div class="carte">
+      <div class="champs">
+        <input id="c-nom" type="text" placeholder="Nom ou entreprise" autocomplete="off">
+        <input id="c-besoin" type="text" placeholder="Besoin (site, application...)" autocomplete="off">
+        <input id="c-montant" type="number" min="0" inputmode="decimal" placeholder="Montant ($)">
+      </div>
+      <p class="erreur" id="c-erreur" role="alert" style="color:#ff8a80;min-height:1.2em;margin:8px 0 0;"></p>
+      <button class="bouton" id="c-ajouter" type="button">Ajouter</button>
+    </div>
+
+    <h2>Tes contacts</h2>
+    <div id="contacts"></div>
+    <div class="outils-rangee">
+      <button id="exporter" type="button">Télécharger en CSV</button>
+      <button id="tout-effacer" type="button">Tout effacer</button>
+    </div>
+
+    <h2>État de ton site</h2>
+    <div class="carte">
+      <div class="cases" id="contenu-site"></div>
+      <button class="bouton" id="tester" type="button" style="margin-top:14px;">Tester les pages maintenant</button>
+      <p id="test-resume" class="sous-titre"></p>
+      <ul class="liste-test" id="test-liste"></ul>
+    </div>
+
+    <h2>Outils pour mesurer et vendre</h2>
+    <div class="carte">
+      <div class="reseaux">
+        <a href="https://search.google.com/search-console" target="_blank" rel="noopener">Search Console (recherches Google)</a>
+        <a href="https://dash.cloudflare.com/" target="_blank" rel="noopener">Cloudflare Web Analytics (visites)</a>
+        <a href="https://adsmanager.facebook.com/" target="_blank" rel="noopener">Gestionnaire de publicités</a>
+        <a href="https://business.whatsapp.com/" target="_blank" rel="noopener">WhatsApp Business</a>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <p><a href="index.html">Retour au site</a></p>
+    <p>© 2026 Rwagaza Tech Solution</p>
+  </footer>
+
+  <script src="lecons.js"></script>
+  <script src="galerie.js"></script>
+  <script src="projets-data.js"></script>
+  <script>
+    (function () {
+      var STATUTS = ["Nouveau", "En discussion", "Devis envoyé", "Gagné", "Perdu"];
+      var CLE_C = "tdb-contacts";
+      var CLE_O = "tdb-objectif";
+
+      function lire(cle, defaut) {
+        try { var v = JSON.parse(localStorage.getItem(cle)); return v === null ? defaut : v; } catch (e) { return defaut; }
+      }
+      function ecrire(cle, v) {
+        try { localStorage.setItem(cle, JSON.stringify(v)); } catch (e) {}
+      }
+
+      var contacts = lire(CLE_C, []);
+      var reglages = lire(CLE_O, { objectif: 10000, panier: 300 });
+
+      var objectifEl = document.getElementById("objectif");
+      var panierEl = document.getElementById("panier");
+      objectifEl.value = reglages.objectif;
+      panierEl.value = reglages.panier;
+
+      function usd(n) {
+        return "$" + Math.round(n).toLocaleString("fr-FR");
+      }
+      function memeMois(iso) {
+        if (!iso) return false;
+        var d = new Date(iso), n = new Date();
+        return d.getFullYear() === n.getFullYear() && d.getMonth() === n.getMonth();
+      }
+      function carte(valeur, libelle) {
+        var d = document.createElement("div");
+        d.className = "case-stat";
+        var b = document.createElement("b");
+        b.textContent = valeur;
+        var s = document.createElement("span");
+        s.textContent = libelle;
+        d.appendChild(b);
+        d.appendChild(s);
+        return d;
+      }
+
+      function majChiffres() {
+        reglages.objectif = parseFloat(objectifEl.value) || 0;
+        reglages.panier = parseFloat(panierEl.value) || 0;
+        ecrire(CLE_O, reglages);
+
+        var gagnes = contacts.filter(function (c) { return c.statut === "Gagné"; });
+        var gagnesMois = gagnes.filter(function (c) { return memeMois(c.dateGain); });
+        var revenuMois = gagnesMois.reduce(function (s, c) { return s + (c.montant || 0); }, 0);
+        var revenuTotal = gagnes.reduce(function (s, c) { return s + (c.montant || 0); }, 0);
+        var enCours = contacts.filter(function (c) { return c.statut === "En discussion" || c.statut === "Devis envoyé"; });
+        var potentiel = enCours.reduce(function (s, c) { return s + (c.montant || 0); }, 0);
+        var taux = contacts.length ? Math.round(gagnes.length / contacts.length * 100) : 0;
+        var reste = Math.max(0, reglages.objectif - revenuMois);
+        var clientsReste = reglages.panier > 0 ? Math.ceil(reste / reglages.panier) : 0;
+        var pct = reglages.objectif > 0 ? Math.min(100, revenuMois / reglages.objectif * 100) : 0;
+
+        document.getElementById("barre").style.width = pct + "%";
+        document.getElementById("resume-objectif").textContent =
+          usd(revenuMois) + " gagnés ce mois sur " + usd(reglages.objectif) + " (" + Math.round(pct) + " %). " +
+          (reste > 0
+            ? "Il reste " + usd(reste) + ", soit environ " + clientsReste + " vente" + (clientsReste > 1 ? "s" : "") + " à " + usd(reglages.panier) + "."
+            : "Objectif atteint, bravo !");
+
+        var cases = document.getElementById("cases");
+        cases.textContent = "";
+        cases.appendChild(carte(usd(revenuMois), "Revenus du mois"));
+        cases.appendChild(carte(usd(revenuTotal), "Revenus au total"));
+        cases.appendChild(carte(String(contacts.length), "Contacts"));
+        cases.appendChild(carte(String(gagnes.length), "Ventes gagnées"));
+        cases.appendChild(carte(usd(potentiel), "En cours de négociation"));
+        cases.appendChild(carte(taux + " %", "Taux de réussite"));
+      }
+
+      function afficherContacts() {
+        var zone = document.getElementById("contacts");
+        zone.textContent = "";
+        if (!contacts.length) {
+          var vide = document.createElement("p");
+          vide.className = "sous-titre";
+          vide.textContent = "Aucun contact pour l'instant. Ajoute ton premier client ci-dessus.";
+          zone.appendChild(vide);
+          return;
+        }
+        contacts.slice().reverse().forEach(function (c) {
+          var bloc = document.createElement("div");
+          bloc.className = "contact";
+          var h = document.createElement("h4");
+          h.textContent = c.nom;
+          var p1 = document.createElement("p");
+          p1.textContent = (c.besoin || "Besoin non précisé") + " · " + usd(c.montant || 0);
+          var p2 = document.createElement("p");
+          p2.textContent = "Ajouté le " + new Date(c.date).toLocaleDateString("fr-FR");
+          var sel = document.createElement("select");
+          sel.setAttribute("aria-label", "Statut de " + c.nom);
+          STATUTS.forEach(function (s) {
+            var o = document.createElement("option");
+            o.value = s;
+            o.textContent = s;
+            if (s === c.statut) o.selected = true;
+            sel.appendChild(o);
+          });
+          sel.onchange = function () {
+            c.statut = sel.value;
+            c.dateGain = sel.value === "Gagné" ? new Date().toISOString() : null;
+            ecrire(CLE_C, contacts);
+            majChiffres();
+          };
+          var sup = document.createElement("button");
+          sup.type = "button";
+          sup.className = "mini";
+          sup.textContent = "Supprimer";
+          sup.onclick = function () {
+            if (!window.confirm("Supprimer " + c.nom + " ?")) return;
+            contacts = contacts.filter(function (x) { return x.id !== c.id; });
+            ecrire(CLE_C, contacts);
+            afficherContacts();
+            majChiffres();
+          };
+          bloc.appendChild(h);
+          bloc.appendChild(p1);
+          bloc.appendChild(p2);
+          bloc.appendChild(sel);
+          bloc.appendChild(sup);
+          zone.appendChild(bloc);
+        });
+      }
+
+      document.getElementById("c-ajouter").onclick = function () {
+        var nom = document.getElementById("c-nom").value.trim();
+        var besoin = document.getElementById("c-besoin").value.trim();
+        var montant = parseFloat(document.getElementById("c-montant").value) || 0;
+        var erreur = document.getElementById("c-erreur");
+        if (!nom) { erreur.textContent = "Écris au moins un nom."; return; }
+        erreur.textContent = "";
+        contacts.push({
+          id: Date.now() + "-" + Math.floor(Math.random() * 1000),
+          nom: nom, besoin: besoin, montant: montant,
+          statut: "Nouveau", date: new Date().toISOString(), dateGain: null
+        });
+        ecrire(CLE_C, contacts);
+        document.getElementById("c-nom").value = "";
+        document.getElementById("c-besoin").value = "";
+        document.getElementById("c-montant").value = "";
+        afficherContacts();
+        majChiffres();
+      };
+
+      document.getElementById("exporter").onclick = function () {
+        if (!contacts.length) return;
+        function cel(v) { return '"' + String(v === null || v === undefined ? "" : v).replace(/"/g, '""') + '"'; }
+        var lignes = [["Nom", "Besoin", "Montant", "Statut", "Date"].map(cel).join(";")];
+        contacts.forEach(function (c) {
+          lignes.push([c.nom, c.besoin, c.montant, c.statut, new Date(c.date).toLocaleDateString("fr-FR")].map(cel).join(";"));
+        });
+        var blob = new Blob(["\ufeff" + lignes.join("\n")], { type: "text/csv;charset=utf-8" });
+        var a = document.createElement("a");
+        a.href = URL.createObjectURL(blob);
+        a.download = "mes-contacts.csv";
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        setTimeout(function () { URL.revokeObjectURL(a.href); }, 1000);
+      };
+
+      document.getElementById("tout-effacer").onclick = function () {
+        if (!contacts.length) return;
+        if (!window.confirm("Effacer tous tes contacts ? Cette action est définitive.")) return;
+        contacts = [];
+        ecrire(CLE_C, contacts);
+        afficherContacts();
+        majChiffres();
+      };
+
+      objectifEl.oninput = majChiffres;
+      panierEl.oninput = majChiffres;
+
+      /* ===== Contenu et état du site ===== */
+      var cs = document.getElementById("contenu-site");
+      cs.appendChild(carte(typeof lecons !== "undefined" ? String(lecons.length) : "?", "Leçons"));
+      cs.appendChild(carte(typeof galerie !== "undefined" ? String(galerie.length) : "?", "Images de galerie"));
+      cs.appendChild(carte(typeof projets !== "undefined" ? String(projets.length) : "?", "Projets"));
+
+      var PAGES = ["index.html", "projets.html", "projet.html", "apprendre.html", "galerie.html", "outils.html", "a-propos.html", "contact.html", "article1.html", "confidentialite.html", "404.html", "offline.html", "en/index.html", "es/index.html", "pt/index.html", "sitemap.xml", "robots.txt", "manifest.json", "sw.js"];
+
+      document.getElementById("tester").onclick = function () {
+        var liste = document.getElementById("test-liste");
+        var resume = document.getElementById("test-resume");
+        liste.textContent = "";
+        resume.textContent = "Test en cours...";
+        var manquants = 0;
+        var chaine = Promise.resolve();
+        PAGES.forEach(function (f) {
+          chaine = chaine.then(function () {
+            return fetch(f + "?t=" + Date.now(), { cache: "no-store" })
+              .then(function (r) { return r.ok; })
+              .catch(function () { return false; });
+          }).then(function (ok) {
+            var li = document.createElement("li");
+            li.className = ok ? "ok" : "ko";
+            li.textContent = (ok ? "✅ " : "❌ ") + f;
+            liste.appendChild(li);
+            if (!ok) manquants++;
+          });
+        });
+        chaine.then(function () {
+          resume.textContent = manquants === 0
+            ? "✅ Toutes les pages répondent."
+            : "❌ " + manquants + " fichier(s) introuvable(s) : vérifie la liste ci-dessus.";
+        });
+      };
+
+      afficherContacts();
+      majChiffres();
+    })();
+  </script>
+</body>
+</html>
