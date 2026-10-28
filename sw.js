@@ -1,5 +1,5 @@
 // Version : change ce numéro à chaque grosse mise à jour du site
-const VERSION = "v11";
+const VERSION = "v12";
 const CACHE_PAGES = "pages-" + VERSION;
 const CACHE_STATIQUE = "statique-" + VERSION;
 const CACHE_IMAGES = "images-" + VERSION;
@@ -13,7 +13,7 @@ const PAGES = [
 ];
 const STATIQUES = [
   "/style.css", "/lecons.js", "/galerie.js", "/projets-data.js",
-  "/publications.js", "/assistant.js", "/manifest.json"
+  "/publications.js", "/assistant.js", "/progres.js", "/manifest.json"
 ];
 const IMAGES = ["/icon-192.png", "/icon-512.png"];
 
