@@ -14,8 +14,8 @@
       texte: "Tu peux découvrir mes projets sur la page Projets.", lien: "projets.html", nom: "Voir les projets" },
     { mots: ["apprendre", "cours", "tutoriel", "article", "formation", "debutant", "etudier", "lecon"],
       texte: "Les 65 leçons pour débutants sont sur la page Apprendre, avec recherche et filtres.", lien: "apprendre.html", nom: "Aller à Apprendre" },
-    { mots: ["outil", "mot de passe", "password", "convertisseur", "octet", "masque", "cidr", "calculatrice", "generateur"],
-      texte: "Les outils gratuits : générateur de mot de passe, convertisseur d'octets et calculatrice réseau.", lien: "outils.html", nom: "Ouvrir les outils" },
+    { mots: ["outil", "mot de passe", "password", "convertisseur", "octet", "masque", "cidr", "calculatrice", "generateur", "bloc-notes", "notes"],
+      texte: "Les outils gratuits : mot de passe, convertisseur d'octets, calculatrice réseau, calculatrice, bloc-notes et convertisseur de texte.", lien: "outils.html", nom: "Ouvrir les outils" },
     { mots: ["galerie", "image", "infographie", "schema"],
       texte: "La galerie rassemble des infographies sur l'IA, le web, Linux, les langages et la sécurité.", lien: "galerie.html", nom: "Ouvrir la galerie" },
     { mots: ["serveur", "dns", "proxy", "base de donnees", "hebergement"],
@@ -284,4 +284,38 @@
   }
   window.addEventListener("scroll", majScroll, { passive: true });
   majScroll();
+})();
+
+// ===== Mode clair / sombre =====
+(function () {
+  var CLE = "theme-rwagaza";
+  function lire() {
+    try { return localStorage.getItem(CLE); } catch (e) { return null; }
+  }
+  function ecrire(v) {
+    try { localStorage.setItem(CLE, v); } catch (e) {}
+  }
+  var theme = lire() === "clair" ? "clair" : "sombre";
+
+  var btn = document.createElement("button");
+  btn.type = "button";
+  btn.className = "theme-btn";
+
+  function appliquer(t) {
+    document.documentElement.setAttribute("data-theme", t);
+    var m = document.querySelector('meta[name="theme-color"]');
+    if (m) m.setAttribute("content", t === "clair" ? "#f5f5f7" : "#0c0c0d");
+    btn.textContent = t === "clair" ? "🌙" : "☀️";
+    btn.setAttribute("aria-label", t === "clair" ? "Passer en mode sombre" : "Passer en mode clair");
+  }
+
+  btn.onclick = function () {
+    theme = theme === "clair" ? "sombre" : "clair";
+    ecrire(theme);
+    appliquer(theme);
+  };
+
+  var entete = document.querySelector("header");
+  if (entete) entete.appendChild(btn);
+  appliquer(theme);
 })();
