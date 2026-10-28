@@ -319,3 +319,10 @@
   if (entete) entete.appendChild(btn);
   appliquer(theme);
 })();
+// ===== Réglages communs du site (numéro WhatsApp, menu Tarifs, assistant IA) =====
+(function () {
+  if (document.querySelector('script[src$="site.js"]')) return;
+  var s = document.createElement("script");
+  s.src = "/site.js";
+  document.body.appendChild(s);
+})();
