@@ -135,6 +135,57 @@ details.carte p { margin:10px 0 0; color:#ccc; }
 .formulaire .bouton { border:0; cursor:pointer; font-size:1rem; }
 .formulaire .erreur { color:#ff8a80; margin:10px 0 0; min-height:1.2em; }
 
+/* ===== Page Outils ===== */
+.outil label { display:block; margin:12px 0 6px; font-weight:bold; }
+.outil input[type="text"], .outil select { width:100%; background:#0c0c0d; color:#fff; border:1px solid var(--bord); border-radius:10px; padding:12px; font-size:1rem; font-family:inherit; }
+.outil input[type="text"]:focus, .outil select:focus { outline:2px solid var(--or); }
+.outil input[type="range"] { width:100%; accent-color:var(--or); }
+.outil .case { display:flex; align-items:center; gap:8px; margin:8px 0; font-weight:normal; }
+.outil .case input { width:auto; accent-color:var(--or); }
+.outil .bouton { border:0; cursor:pointer; font-size:1rem; }
+.outil .resultat { background:#0c0c0d; border:1px solid var(--bord); border-radius:10px; padding:12px; margin-top:12px; word-break:break-all; }
+.outil .resultat div { display:flex; justify-content:space-between; gap:10px; padding:4px 0; border-bottom:1px solid #1f1f22; }
+.outil .resultat div:last-child { border-bottom:0; }
+.outil .resultat b { color:var(--or); text-align:right; }
+.outil .erreur { color:#ff8a80; min-height:1.2em; margin:8px 0 0; }
+.mdp-sortie { font-family:monospace; font-size:1.1rem; color:#fff; }
+
+/* ===== Calculatrice, bloc-notes, convertisseur de texte ===== */
+.calc-sous { color:var(--gris); font-size:.9rem; text-align:right; min-height:1.3rem; }
+.calc-ecran { background:#0c0c0d; color:#fff; border:1px solid var(--bord); border-radius:10px; padding:14px; text-align:right; font-family:monospace; font-size:1.4rem; min-height:3.2rem; word-break:break-all; }
+.calc-grille { display:grid; grid-template-columns:repeat(4,1fr); gap:8px; margin-top:12px; }
+.calc-grille button { background:var(--carte); color:var(--texte); border:1px solid var(--bord); border-radius:12px; padding:14px 0; font-size:1.2rem; cursor:pointer; }
+.calc-grille button:active { background:var(--or); color:#111; }
+.calc-grille .op { color:var(--or); font-weight:bold; }
+.calc-grille .egal { background:var(--or); color:#111; font-weight:bold; border-color:var(--or); }
+.notes, .conv-texte { width:100%; min-height:140px; background:#0c0c0d; color:#fff; border:1px solid var(--bord); border-radius:10px; padding:12px; font-size:1rem; font-family:inherit; resize:vertical; }
+.notes:focus, .conv-texte:focus { outline:2px solid var(--or); }
+.outils-rangee { display:flex; flex-wrap:wrap; gap:8px; margin:10px 0; }
+.outils-rangee button { background:transparent; color:var(--or); border:1px solid var(--or); border-radius:20px; padding:6px 14px; cursor:pointer; font-size:.9rem; }
+.outils-rangee button:hover { background:var(--or); color:#111; }
+.stats { color:var(--gris); font-size:.9rem; margin:6px 0; }
+
+/* ===== Suivi des leçons ===== */
+.suivi .piste { background:#2b2b2e; border-radius:10px; height:10px; overflow:hidden; margin:10px 0; }
+.suivi .rempli { background:var(--or); height:100%; width:0; transition:width .3s; }
+.lu-btn { display:block; margin-top:12px; background:transparent; color:var(--or); border:1px solid var(--or); border-radius:20px; padding:6px 14px; cursor:pointer; }
+.lu-btn:hover { background:var(--or); color:#111; }
+details.lue summary::before { content:"✓ "; color:var(--or); }
+
+/* ===== Mode clair ===== */
+.theme-btn { position:absolute; top:10px; right:14px; width:40px; height:40px; border-radius:50%; border:1px solid var(--or); background:transparent; color:var(--or); font-size:1.1rem; cursor:pointer; }
+:root[data-theme="clair"] { --fond:#f5f5f7; --carte:#ffffff; --bord:#d9d9de; --texte:#1a1a1c; --gris:#5b5b61; --or:#b36b00; --or2:#d98200; }
+:root[data-theme="clair"] body::before { background:radial-gradient(circle at 15% 0%, rgba(255,165,0,.12), transparent 45%); }
+:root[data-theme="clair"] header { background:rgba(255,255,255,.92); }
+:root[data-theme="clair"] .hero, :root[data-theme="clair"] .bandeau, :root[data-theme="clair"] .jour { --or:#ffa500; --or2:#ffcc4d; --texte:#f2f2f2; color:#f2f2f2; }
+:root[data-theme="clair"] .carte h3, :root[data-theme="clair"] details.carte summary, :root[data-theme="clair"] .parcours strong { color:var(--texte); }
+:root[data-theme="clair"] .carte-lien p, :root[data-theme="clair"] details.carte p, :root[data-theme="clair"] .glossaire dd { color:var(--gris); }
+:root[data-theme="clair"] .recherche, :root[data-theme="clair"] .formulaire input, :root[data-theme="clair"] .formulaire select, :root[data-theme="clair"] .formulaire textarea, :root[data-theme="clair"] .outil input[type="text"], :root[data-theme="clair"] .outil select, :root[data-theme="clair"] .outil .resultat, :root[data-theme="clair"] .calc-ecran, :root[data-theme="clair"] .notes, :root[data-theme="clair"] .conv-texte { background:#fff; color:var(--texte); }
+:root[data-theme="clair"] .mdp-sortie { color:var(--texte); }
+:root[data-theme="clair"] .outil .resultat div { border-bottom-color:var(--bord); }
+:root[data-theme="clair"] .avert { background:#fff4e0; color:#333; }
+:root[data-theme="clair"] .suivi .piste { background:#e4e4e8; }
+
 /* ===== Pied de page ===== */
 footer { text-align:center; color:var(--gris); padding:30px 20px 80px; border-top:1px solid var(--bord); margin-top:40px; }
 footer a { color:var(--gris); margin:0 8px; text-decoration:none; }
@@ -158,18 +209,4 @@ footer a:hover { color:var(--or); }
   body { background:#fff; color:#000; }
   .carte { border:1px solid #ccc; background:#fff; }
   a { color:#000; }
-  }
-/* ===== Page Outils ===== */
-.outil label { display:block; margin:12px 0 6px; font-weight:bold; }
-.outil input[type="text"], .outil select { width:100%; background:#0c0c0d; color:#fff; border:1px solid var(--bord); border-radius:10px; padding:12px; font-size:1rem; font-family:inherit; }
-.outil input[type="text"]:focus, .outil select:focus { outline:2px solid var(--or); }
-.outil input[type="range"] { width:100%; accent-color:var(--or); }
-.outil .case { display:flex; align-items:center; gap:8px; margin:8px 0; font-weight:normal; }
-.outil .case input { width:auto; accent-color:var(--or); }
-.outil .bouton { border:0; cursor:pointer; font-size:1rem; }
-.outil .resultat { background:#0c0c0d; border:1px solid var(--bord); border-radius:10px; padding:12px; margin-top:12px; word-break:break-all; }
-.outil .resultat div { display:flex; justify-content:space-between; gap:10px; padding:4px 0; border-bottom:1px solid #1f1f22; }
-.outil .resultat div:last-child { border-bottom:0; }
-.outil .resultat b { color:var(--or); text-align:right; }
-.outil .erreur { color:#ff8a80; min-height:1.2em; margin:8px 0 0; }
-.mdp-sortie { font-family:monospace; font-size:1.1rem; color:#fff; }
+       }
