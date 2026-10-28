@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#0c0c0d">
+  <title>Paiement par Airtel Money | Rwagaza Tech Solution</title>
+  <meta name="description" content="Comment payer Rwagaza Tech Solution par Airtel Money, en toute sécurité, avec une référence de paiement.">
+  <link rel="manifest" href="manifest.json">
+  <link rel="apple-touch-icon" href="icon-192.png">
+  <link rel="stylesheet" href="style.css">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Rwagaza Tech">
+  <style>
+    .numero-grand { font-size:1.8rem; font-weight:bold; color:var(--or); margin:6px 0 12px; letter-spacing:1px; }
+    .ref-boite { background:#0c0c0d; border:1px dashed var(--or); border-radius:10px; padding:12px; margin:12px 0; font-family:monospace; font-size:1.2rem; color:#fff; text-align:center; display:none; }
+    :root[data-theme="clair"] .ref-boite { background:#fff; color:var(--texte); }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Rwagaza Tech Solution</h1>
+    <nav aria-label="Menu principal">
+      <a href="index.html">Accueil</a>
+      <a href="projets.html">Projets</a>
+      <a href="apprendre.html">Apprendre</a>
+      <a href="galerie.html">Galerie</a>
+      <a href="outils.html">Outils</a>
+      <a href="tarifs.html">Tarifs</a>
+      <a href="a-propos.html">À propos</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <span class="badge">PAIEMENT</span>
+      <h2>Payer simplement, en toute sécurité</h2>
+      <p>Tu paies seulement après avoir reçu mon devis et donné ton accord sur WhatsApp. Je confirme moi-même chaque paiement reçu.</p>
+      <a class="bouton" href="#airtel">Payer par Airtel Money</a>
+      <a class="bouton vide" href="tarifs.html">Voir les tarifs</a>
+    </section>
+
+    <h2 id="airtel">📲 Airtel Money</h2>
+    <div class="carte">
+      <p class="sous-titre">Numéro de réception</p>
+      <p class="numero-grand" id="numero">+243 967 811 702</p>
+      <button class="bouton" id="copier-numero" type="button">Copier le numéro</button>
+      <p class="source">Avant de confirmer, lis bien le nom du destinataire affiché par Airtel Money. En cas de doute, demande-moi sur WhatsApp le nom exact enregistré.</p>
+    </div>
+
+    <h2>Les étapes</h2>
+    <div class="grille">
+      <article class="carte"><span class="numero">1</span><h3>Accord</h3><p>Mets-toi d'accord avec moi sur WhatsApp : service, prix, délai.</p></article>
+      <article class="carte"><span class="numero">2</span><h3>Référence</h3><p>Crée ta référence de paiement avec le formulaire ci-dessous.</p></article>
+      <article class="carte"><span class="numero">3</span><h3>Paiement</h3><p>Dans Airtel Money, envoie le montant au numéro ci-dessus et note ta référence si l'application le permet.</p></article>
+      <article class="carte"><span class="numero">4</span><h3>Preuve</h3><p>Envoie-moi la capture du SMS de confirmation sur WhatsApp. Je confirme la réception.</p></article>
+    </div>
+
+    <h2>Ma référence de paiement</h2>
+    <div class="carte formulaire">
+      <label for="p-nom">Ton nom</label>
+      <input id="p-nom" type="text" placeholder="Ex. : Marie" autocomplete="name">
+
+      <label for="p-service">Service</label>
+      <select id="p-service">
+        <option>Site vitrine</option>
+        <option>Site professionnel</option>
+        <option>Site + application installable</option>
+        <option>Maintenance mensuelle</option>
+        <option>Séance d'accompagnement</option>
+        <option>Autre (convenu sur WhatsApp)</option>
+      </select>
+
+      <label for="p-montant">Montant convenu (en dollars américains)</label>
+      <input id="p-montant" type="number" min="1" inputmode="decimal" placeholder="Ex. : 150">
+
+      <p class="erreur" id="p-erreur" role="alert"></p>
+      <div class="ref-boite" id="ref-boite"></div>
+
+      <button class="bouton" id="p-ref" type="button">Créer ma référence</button>
+      <button class="bouton vide" id="p-copier-ref" type="button">Copier la référence</button>
+      <button class="bouton" id="p-wa" type="button">J'ai payé : envoyer la preuve sur WhatsApp</button>
+      <p class="source">Cette page n'enregistre rien et ne vérifie aucun paiement : Daniel confirme chaque paiement lui-même après avoir reçu ta preuve. Le montant est en dollars ; une conversion éventuelle en francs congolais est convenue avec lui.</p>
+    </div>
+
+    <h2>🔒 Pour ta sécurité</h2>
+    <div class="carte">
+      <ul class="puces">
+        <li>Ne paie jamais avant d'avoir un accord écrit (devis) sur WhatsApp.</li>
+        <li>Ne donne jamais ton code PIN Airtel Money : je ne te le demanderai jamais.</li>
+        <li>Garde le SMS de confirmation jusqu'à la livraison.</li>
+        <li>Méfie-toi des faux messages qui disent venir de moi : vérifie toujours que le numéro WhatsApp est bien celui affiché sur ce site.</li>
+        <li>Besoin d'un autre moyen de paiement ? Écris-moi sur WhatsApp.</li>
+      </ul>
+    </div>
+  </main>
+
+  <a class="wa-flottant" href="https://wa.me/243967811702" target="_blank" rel="noopener" aria-label="Me contacter sur WhatsApp">💬 WhatsApp</a>
+
+  <footer>
+    <p class="langues">
+      <a href="/" aria-current="true">Français</a>
+      <a href="/en/">English</a>
+      <a href="/es/">Español</a>
+      <a href="/pt/">Português</a>
+    </p>
+    <p>
+      <a href="index.html">Accueil</a>
+      <a href="projets.html">Projets</a>
+      <a href="tarifs.html">Tarifs</a>
+      <a href="paiement.html">Payer</a>
+      <a href="contact.html">Contact</a>
+    </p>
+    <p><a href="confidentialite.html">Mentions légales et confidentialité</a></p>
+    <p>© 2026 Rwagaza Tech Solution</p>
+  </footer>
+
+  <script>
+    (function () {
+      var NUMERO_WA = "243967811702";
+      var NUMERO_AFFICHE = "+243 967 811 702";
+      var reference = "";
+
+      var nom = document.getElementById("p-nom");
+      var service = document.getElementById("p-service");
+      var montant = document.getElementById("p-montant");
+      var erreur = document.getElementById("p-erreur");
+      var boite = document.getElementById("ref-boite");
+
+      function copier(texte, btn, libelle) {
+        if (!texte) return;
+        function ok() {
+          btn.textContent = "Copié ✓";
+          setTimeout(function () { btn.textContent = libelle; }, 1500);
+        }
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(texte).then(ok).catch(function () {});
+        } else {
+          var ta = document.createElement("textarea");
+          ta.value = texte;
+          document.body.appendChild(ta);
+          ta.select();
+          try { document.execCommand("copy"); ok(); } catch (e) {}
+          document.body.removeChild(ta);
+        }
+      }
+
+      function pad(n) { return (n < 10 ? "0" : "") + n; }
+      function nouvelleReference() {
+        var d = new Date();
+        var lettres = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
+        var fin = "";
+        for (var i = 0; i < 4; i++) fin += lettres.charAt(Math.floor(Math.random() * lettres.length));
+        return "RTS-" + String(d.getFullYear()).slice(2) + pad(d.getMonth() + 1) + pad(d.getDate()) + "-" + fin;
+      }
+
+      function verifier() {
+        var n = nom.value.trim();
+        var m = parseFloat(montant.value);
+        if (!n || !(m > 0)) {
+          erreur.textContent = "Écris ton nom et le montant convenu.";
+          return null;
+        }
+        erreur.textContent = "";
+        return { nom: n, service: service.value, montant: m };
+      }
+
+      function afficherReference() {
+        boite.textContent = reference;
+        boite.style.display = "block";
+      }
+
+      document.getElementById("copier-numero").onclick = function () {
+        copier(NUMERO_AFFICHE, this, "Copier le numéro");
+      };
+
+      document.getElementById("p-ref").onclick = function () {
+        if (!verifier()) return;
+        reference = nouvelleReference();
+        afficherReference();
+      };
+
+      document.getElementById("p-copier-ref").onclick = function () {
+        copier(reference, this, "Copier la référence");
+      };
+
+      document.getElementById("p-wa").onclick = function () {
+        var d = verifier();
+        if (!d) return;
+        if (!reference) { reference = nouvelleReference(); afficherReference(); }
+        var texte = "Bonjour Daniel, j'ai effectué un paiement par Airtel Money.\n" +
+          "Nom : " + d.nom + "\n" +
+          "Service : " + d.service + "\n" +
+          "Montant : " + d.montant + " $\n" +
+          "Référence : " + reference + "\n" +
+          "Je t'envoie la capture du SMS de confirmation.";
+        window.open("https://wa.me/" + NUMERO_WA + "?text=" + encodeURIComponent(texte), "_blank", "noopener");
+      };
+    })();
+  </script>
+  <script src="assistant.js"></script>
+  <script>
+    if ("serviceWorker" in navigator) {
+      window.addEventListener("load", function () {
+        navigator.serviceWorker.register("/sw.js").catch(function () {});
+      });
+    }
+  </script>
+</body>
+                               </html>
