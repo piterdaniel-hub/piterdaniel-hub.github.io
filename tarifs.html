@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#0c0c0d">
+  <title>Tarifs : création de site web et application | Rwagaza Tech Solution</title>
+  <meta name="description" content="Tarifs de départ de Rwagaza Tech Solution : site vitrine, site professionnel, site installable comme application, maintenance et accompagnement.">
+  <link rel="manifest" href="manifest.json">
+  <link rel="apple-touch-icon" href="icon-192.png">
+  <link rel="stylesheet" href="style.css">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Rwagaza Tech">
+  <style>
+    .prix { font-size:1.6rem; font-weight:bold; color:var(--or); margin:4px 0 8px; }
+    .prix small { font-size:.9rem; color:var(--gris); font-weight:normal; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Rwagaza Tech Solution</h1>
+    <nav aria-label="Menu principal">
+      <a href="index.html">Accueil</a>
+      <a href="projets.html">Projets</a>
+      <a href="apprendre.html">Apprendre</a>
+      <a href="galerie.html">Galerie</a>
+      <a href="outils.html">Outils</a>
+      <a href="tarifs.html" aria-current="page">Tarifs</a>
+      <a href="a-propos.html">À propos</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <span class="badge">TARIFS</span>
+      <h2>Des prix clairs, sans surprise</h2>
+      <p>Prix de départ en dollars américains (USD). Le prix final dépend de ton besoin : il est écrit dans un devis avant tout paiement.</p>
+      <a class="bouton" href="#forfaits">Voir les forfaits</a>
+      <a class="bouton vide" href="paiement.html">Comment payer</a>
+    </section>
+
+    <h2 id="forfaits">Les forfaits</h2>
+    <div class="grille" id="liste-forfaits"></div>
+    <noscript><p class="sous-titre">Active JavaScript pour voir les forfaits, ou écris-moi sur WhatsApp.</p></noscript>
+    <p class="source">Un nom de domaine personnalisé (par exemple monentreprise.com) est en option : son prix est payé au registraire, en plus.</p>
+
+    <h2>Comment ça se passe</h2>
+    <div class="grille">
+      <article class="carte"><span class="numero">1</span><h3>Discussion</h3><p>Tu m'écris sur WhatsApp et tu m'expliques ton besoin.</p></article>
+      <article class="carte"><span class="numero">2</span><h3>Devis</h3><p>Je t'envoie un devis écrit : contenu, prix, délai.</p></article>
+      <article class="carte"><span class="numero">3</span><h3>Accord et paiement</h3><p>Après ton accord, tu paies selon les conditions du devis.</p></article>
+      <article class="carte"><span class="numero">4</span><h3>Réalisation</h3><p>Je construis, tu valides, puis je mets en ligne.</p></article>
+    </div>
+
+    <h2>Questions fréquentes</h2>
+    <details class="carte">
+      <summary>Le prix est-il fixe ?</summary>
+      <p>Les prix affichés sont des prix de départ. Le prix final est confirmé dans un devis écrit, avant tout paiement.</p>
+    </details>
+    <details class="carte">
+      <summary>Comment payer ?</summary>
+      <p>Par Airtel Money. Les étapes sont sur la page Paiement. Tu ne paies qu'après avoir reçu mon devis et donné ton accord.</p>
+    </details>
+    <details class="carte">
+      <summary>Faut-il tout payer d'un coup ?</summary>
+      <p>En général, un acompte permet de démarrer, puis le solde est payé à la livraison. Les conditions exactes sont écrites dans le devis.</p>
+    </details>
+    <details class="carte">
+      <summary>Et si je veux des changements après la livraison ?</summary>
+      <p>Les petites modifications sont incluses dans la maintenance mensuelle, ou facturées à part selon leur taille.</p>
+    </details>
+
+    <section class="bandeau">
+      <h2>Un projet en tête ?</h2>
+      <p>Décris-moi ton besoin : je te réponds avec un devis clair.</p>
+      <a class="bouton" href="https://wa.me/243967811702?text=Bonjour%20Daniel%2C%20je%20voudrais%20un%20devis." target="_blank" rel="noopener">Demander un devis</a>
+    </section>
+  </main>
+
+  <a class="wa-flottant" href="https://wa.me/243967811702" target="_blank" rel="noopener" aria-label="Me contacter sur WhatsApp">💬 WhatsApp</a>
+
+  <footer>
+    <p class="langues">
+      <a href="/" aria-current="true">Français</a>
+      <a href="/en/">English</a>
+      <a href="/es/">Español</a>
+      <a href="/pt/">Português</a>
+    </p>
+    <p>
+      <a href="index.html">Accueil</a>
+      <a href="projets.html">Projets</a>
+      <a href="tarifs.html">Tarifs</a>
+      <a href="paiement.html">Payer</a>
+      <a href="contact.html">Contact</a>
+    </p>
+    <p><a href="confidentialite.html">Mentions légales et confidentialité</a></p>
+    <p>© 2026 Rwagaza Tech Solution</p>
+  </footer>
+
+  <script>
+    (function () {
+      var NUMERO = "243967811702";
+
+      // Modifie ici les prix, les noms et les contenus de chaque forfait
+      var forfaits = [
+        { nom: "Site vitrine", icone: "🌐", etiquette: "Pour démarrer", prix: 150, debut: true, unite: "",
+          points: ["1 à 3 pages claires", "Affichage adapté au téléphone", "Boutons WhatsApp et e-mail", "Mise en ligne incluse", "Explications pour modifier tes textes"] },
+        { nom: "Site professionnel", icone: "💼", etiquette: "Recommandé pour une entreprise", prix: 300, debut: true, unite: "",
+          points: ["Jusqu'à 8 pages", "Présentation de tes réalisations ou produits", "Formulaire qui prépare ton message WhatsApp", "Bases du référencement sur Google", "Page de mentions légales et confidentialité"] },
+        { nom: "Site + application installable", icone: "📱", etiquette: "Le plus complet", prix: 450, debut: true, unite: "",
+          points: ["Tout le forfait professionnel", "Icône sur l'écran d'accueil du téléphone", "Ouverture en plein écran comme une application", "Pages déjà visitées disponibles sans connexion", "Mise en place du suivi Google Search Console"] },
+        { nom: "Maintenance mensuelle", icone: "🛠️", etiquette: "Tranquillité", prix: 20, debut: false, unite: "par mois",
+          points: ["Mise à jour de tes textes et photos", "Vérification que toutes les pages fonctionnent", "Petites corrections", "Réponse prioritaire sur WhatsApp"] },
+        { nom: "Séance d'accompagnement", icone: "🎓", etiquette: "Pour apprendre", prix: 15, debut: true, unite: "la séance d'une heure",
+          points: ["Explications adaptées à ton niveau", "Exercices pratiques", "Questions et réponses sur WhatsApp", "Conseils pour progresser"] }
+      ];
+
+      function el(tag, cls, txt) {
+        var e = document.createElement(tag);
+        if (cls) e.className = cls;
+        if (txt) e.textContent = txt;
+        return e;
+      }
+
+      var liste = document.getElementById("liste-forfaits");
+      forfaits.forEach(function (f) {
+        var c = el("article", "carte");
+        c.appendChild(el("span", "etiquette", f.etiquette));
+        c.appendChild(el("h3", null, f.icone + " " + f.nom));
+
+        var p = el("p", "prix");
+        if (f.debut) p.appendChild(el("small", null, "À partir de "));
+        p.appendChild(document.createTextNode(f.prix + " $"));
+        if (f.unite) p.appendChild(el("small", null, " " + f.unite));
+        c.appendChild(p);
+
+        var ul = el("ul", "puces");
+        f.points.forEach(function (t) { ul.appendChild(el("li", null, t)); });
+        c.appendChild(ul);
+
+        var texte = "Bonjour Daniel, je suis intéressé(e) par : " + f.nom + " (" + (f.debut ? "à partir de " : "") + f.prix + " $" + (f.unite ? " " + f.unite : "") + ").";
+        var a = el("a", "bouton", "Commander sur WhatsApp");
+        a.href = "https://wa.me/" + NUMERO + "?text=" + encodeURIComponent(texte);
+        a.target = "_blank";
+        a.rel = "noopener";
+        c.appendChild(a);
+        liste.appendChild(c);
+      });
+    })();
+  </script>
+  <script src="assistant.js"></script>
+  <script>
+    if ("serviceWorker" in navigator) {
+      window.addEventListener("load", function () {
+        navigator.serviceWorker.register("/sw.js").catch(function () {});
+      });
+    }
+  </script>
+</body>
+</html>
